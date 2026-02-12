@@ -1,0 +1,13 @@
+1- Encontrar archivos duplicados(nombre, tamaño, similitudes en ambos aspectos).
+2- Ejecutarse desde la terminal con comandos específicos y sin tener que navegar hasta el
+   directorio del archivo.
+3- Renombrar archivos, varios a la misma vez y con condiciones.
+4- Mover archivos de carpeta, varios a la misma vez y con condiciones.
+5- Eliminar archivos.
+6- Agregar íconos a los directorios, varios a la misma vez.
+*7- Leer y escribir información en archivos.
+8- Crear comandos para mover archivos a carpetas específicas, sin tener que estar navegando.
+9- Empaquetado, instalación en otros sistemas.
+*10- Tocar nociones de administración de tareas.
+11- Organizar archivos con condiciones.
+12- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
