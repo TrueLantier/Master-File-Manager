@@ -1,4 +1,4 @@
-FASE 1: Implementación básica de X objetivos.
+FASE 1: Implementación básica de 1-5.
 OC: Aprender e implementar patrones. // Objetivo Complementario.
 
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar.
