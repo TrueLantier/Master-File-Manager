@@ -17,6 +17,7 @@ public class GuardarNombres {
         if (rutaVálida(rutaNombres)) {
             this.rutaNombres = rutaNombres;
         }
+
     }
 
     boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
