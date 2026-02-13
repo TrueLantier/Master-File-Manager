@@ -6,7 +6,7 @@ public class GuardarNombres {
     String rutaNombres;
     String rutaDeGuardado = "src/Logic/GuardarNombres";
     File carpeta ;
-    //boolean rutaVálida = rutaVálida(rutaNombres);
+
     /*
      Formas de pasar la ruta:
      1- Pedir la ruta por teclado y analizar con Scanner u otro método.
