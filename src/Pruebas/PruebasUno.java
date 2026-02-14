@@ -1,10 +1,13 @@
 package Pruebas;
-import java.util.Scanner;
+import Logic.GuardarNombres.GuardarNombres;
+
+import java.io.*;
+import java.util.*;
 
 public class PruebasUno {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String a = sc.next();
-        System.out.println(a);
+    public static void main(String[] args) throws IOException{
+        String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaUno";
+        GuardarNombres gn = new GuardarNombres(ruta);
+        System.out.println(gn.nombresArchivos);
     }
 }

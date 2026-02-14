@@ -1,11 +1,14 @@
 package Logic.GuardarNombres;
 import java.io.*;
-import java.nio.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuardarNombres {
     String rutaNombres;
     String rutaDeGuardado = "src/Logic/GuardarNombres";
     File carpeta ;
+    File[] elementos;
+    public List<String> nombresArchivos;
 
     /*
      Formas de pasar la ruta:
@@ -13,11 +16,11 @@ public class GuardarNombres {
      2- Pasar la ruta como argumento de línea de comandos.
      */
 
-    GuardarNombres(String rutaNombres) throws FileNotFoundException{
+    public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         if (rutaVálida(rutaNombres)) {
             this.rutaNombres = rutaNombres;
         }
-
+        copiarArchivos();
     }
 
     boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
@@ -34,7 +37,7 @@ public class GuardarNombres {
         return true;
     }
 
-    public StringBuilder getNombreCarpeta(String rutaNombres) {
+    public String getNombreCarpeta(String rutaNombres) {
         StringBuilder nombreCarpeta = new StringBuilder();
 
         for (int i = rutaNombres.length()-1; ; i--) {
@@ -42,6 +45,22 @@ public class GuardarNombres {
             if (charActual == '/') break;
             nombreCarpeta.append(charActual);
         }
-        return nombreCarpeta.reverse();
+        return nombreCarpeta.reverse().toString();
+    }
+
+    public void copiarArchivos() {
+        elementos = carpeta.listFiles();
+        if (elementos == null) {
+            // Más adelante se pueden separar estas condiciones.
+            System.out.println("Carpeta vacía o no se pueden leer los permisos.");
+            return;
+        }
+
+        nombresArchivos = new ArrayList<>();
+        for (File elemento: elementos) {
+            if (elemento.isFile()) {
+                nombresArchivos.add(elemento.getName());
+            }
+        }
     }
 }
