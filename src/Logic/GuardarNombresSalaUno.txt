@@ -1,0 +1,15 @@
+!@!@.txt
+2332.txt
+Á-archivo.txt
+A-archivo.txt
+A-primer-archivo.txt
+Effective_Java_Best_Practices_for_the_Java_Platform_Joshua_Bloch.pdf
+java.pdf
+leetcode_solutions_java.pdf
+pexels-8moments-1323550.jpg
+pexels-abdghat-1631677.jpg
+pexels-apasaric-3629227.jpg
+pexels-arist-creathrive-1183525-2253573.jpg
+Sala01.txt
+Sala02.txt
+Sala03.txt

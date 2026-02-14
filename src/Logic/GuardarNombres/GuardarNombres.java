@@ -1,8 +1,8 @@
 package Logic.GuardarNombres;
+
 import java.io.*;
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +26,7 @@ public class GuardarNombres {
             this.rutaNombres = rutaNombres;
         }
         copiarArchivos();
+        crearLista();
     }
 
     boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
@@ -70,5 +71,19 @@ public class GuardarNombres {
 
         collator.setStrength(Collator.TERTIARY);
         nombresArchivos.sort(collator);
+    }
+
+    public void crearLista() {
+        String nombreLista = rutaDeGuardado + getNombreCarpeta(rutaNombres) + ".txt";
+        try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
+            for (String elemento: nombresArchivos) {
+                lista.write(elemento);
+                lista.write("\n");
+            }
+
+            //lista.write();
+        }   catch (IOException e) {
+            System.out.println("Error escribiendo la lista." + e.getMessage());
+        }
     }
 }
