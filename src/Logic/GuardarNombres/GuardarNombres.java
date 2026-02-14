@@ -1,7 +1,10 @@
 package Logic.GuardarNombres;
 import java.io.*;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class GuardarNombres {
     String rutaNombres;
@@ -9,6 +12,8 @@ public class GuardarNombres {
     File carpeta ;
     File[] elementos;
     public List<String> nombresArchivos;
+    Locale locale = Locale.getDefault();
+    Collator collator = Collator.getInstance(locale);
 
     /*
      Formas de pasar la ruta:
@@ -62,5 +67,8 @@ public class GuardarNombres {
                 nombresArchivos.add(elemento.getName());
             }
         }
+
+        collator.setStrength(Collator.TERTIARY);
+        nombresArchivos.sort(collator);
     }
 }
