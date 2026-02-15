@@ -1,4 +1,6 @@
-package Logic.CrearArchivos;
+package Tests;
+
+import Logic.CrearArchivos.CrearArchivos;
 
 import java.io.FileNotFoundException;
 

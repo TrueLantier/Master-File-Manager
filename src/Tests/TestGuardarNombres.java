@@ -1,9 +1,8 @@
-package Pruebas;
+package Tests;
 import Logic.GuardarNombres.GuardarNombres;
 import java.io.*;
-import java.util.*;
 
-public class PruebasUno {
+public class TestGuardarNombres {
     public static void main(String[] args) throws IOException{
         String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaUno";
         String ruta2 = "/home/angel/Documentos/Universidad/Autoestudio/Java/Best Java";

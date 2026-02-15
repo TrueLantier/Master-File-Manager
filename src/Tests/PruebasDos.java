@@ -1,4 +1,4 @@
-package Pruebas;
+package Tests;
 // Para Probar la clase EliminarArchivos.
 import Logic.EliminarArchivos.EliminarArchivos;
 
