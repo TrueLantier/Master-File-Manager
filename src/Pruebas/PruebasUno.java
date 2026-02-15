@@ -9,7 +9,6 @@ public class PruebasUno {
         String ruta2 = "/home/angel/Documentos/Universidad/Autoestudio/Java/Best Java";
         GuardarNombres gn = new GuardarNombres(ruta2);
         //gn.crearLista();
-        System.out.println(gn.nombresArchivos);
         System.out.println(gn.getNombreCarpeta(ruta));
 
     }

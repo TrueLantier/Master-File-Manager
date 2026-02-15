@@ -1,5 +1,7 @@
 package Logic.GuardarNombres;
 
+import Logic.Diseño.Diseño;
+
 import java.io.*;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ public class GuardarNombres {
     String rutaDeGuardado = "src/Logic/GuardarNombres/";
     File carpeta ;
     File[] elementos;
-    public List<String> nombresArchivos;
+    List<String> nombresArchivos;
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);
 
@@ -76,9 +78,11 @@ public class GuardarNombres {
     public void crearLista() {
         String nombreLista = rutaDeGuardado + getNombreCarpeta(rutaNombres) + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
+            // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
             for (String elemento: nombresArchivos) {
                 lista.write(elemento);
-                lista.write("\n");
+                lista.newLine();
+                //lista.write("\n");
             }
 
         }   catch (IOException e) {
