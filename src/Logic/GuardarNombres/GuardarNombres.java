@@ -1,7 +1,5 @@
 package Logic.GuardarNombres;
 
-import Logic.Diseño.Diseño;
-
 import java.io.*;
 import java.text.Collator;
 import java.util.ArrayList;

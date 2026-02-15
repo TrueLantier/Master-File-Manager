@@ -1,13 +1,11 @@
-package Pruebas;
-// Para Probar la clase EliminarArchivos.
-import Logic.EliminarArchivos.EliminarArchivos;
+package Logic.CrearArchivos;
 
 import java.io.FileNotFoundException;
 
-public class PruebasDos {
+public class TestCrearArchivos {
     public static void main(String[] args) throws FileNotFoundException {
         String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaDos";
-
-        EliminarArchivos ea = new EliminarArchivos(ruta);
+        CrearArchivos ca = new CrearArchivos(ruta, 5);
+        System.out.println(ca.getNombreCarpeta(ruta));
     }
 }
