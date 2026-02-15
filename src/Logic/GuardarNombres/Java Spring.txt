@@ -2,7 +2,6 @@ _OceanofPDF_com_Java_Persistence_with_Spring_Data_and_Hibernate.pdf
 Cloud Native Spring in Action With Spring Boot and Kubernetes (Thomas Vitale) (Z-Library).pdf
 desarrollo de aplicaciones mediante framework spring.pdf
 kupdf_net_spring_boot_2022_arquitectura_de_back_end_spanish_edition.pdf
-Laurentiu_Spilca_Spring_Security_in_Action,_Second_Edition_Manning.epub
 Laurentiu_Spilca_Spring_Security_in_Action,_Second_Edition_Manning.pdf
 Mastering Spring Boot 3.0 A comprehensive guide to building scalable and efficient backend systems with Java and Spring (Ahmet Meric) (Z-Library).pdf
 Spring_Boot_2022_Arquitectura_de_Back_End_Spanis_240124_235754.pdf

@@ -1,11 +1,13 @@
 FASE 1: Implementación básica de 1-5.
 OC: Aprender e implementar patrones. // Objetivo Complementario.
 
-1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar.
+1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
 2- Eliminar archivos.
 3- Leer y escribir información en archivos.
 4- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 5- Agregar íconos a los directorios, varios a la misma vez.
+
+
 6- Ejecutarse desde la terminal con comandos específicos y sin tener que navegar hasta el
    directorio del archivo. Esto puede ser necesario o no, ya que le haré una interfaz al proyecto.
 7- Renombrar archivos, varios a la misma vez y con condiciones.
