@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class GuardarNombres {
     String rutaNombres;
-    String rutaDeGuardado = "src/Logic/GuardarNombres";
+    String rutaDeGuardado = "src/Logic/GuardarNombres/";
     File carpeta ;
     File[] elementos;
     public List<String> nombresArchivos;
@@ -29,7 +29,7 @@ public class GuardarNombres {
         crearLista();
     }
 
-    boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
+    public boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
         carpeta = new File(rutaNombres);
 
         if (!carpeta.exists()) {
@@ -81,7 +81,6 @@ public class GuardarNombres {
                 lista.write("\n");
             }
 
-            //lista.write();
         }   catch (IOException e) {
             System.out.println("Error escribiendo la lista." + e.getMessage());
         }

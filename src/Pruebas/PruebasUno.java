@@ -6,7 +6,8 @@ import java.util.*;
 public class PruebasUno {
     public static void main(String[] args) throws IOException{
         String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaUno";
-        GuardarNombres gn = new GuardarNombres(ruta);
+        String ruta2 = "/home/angel/Documentos/Universidad/Autoestudio/Java/Java Spring";
+        GuardarNombres gn = new GuardarNombres(ruta2);
         //gn.crearLista();
         System.out.println(gn.nombresArchivos);
         System.out.println(gn.getNombreCarpeta(ruta));
