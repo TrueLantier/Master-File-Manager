@@ -2,13 +2,13 @@ package Logic.Diseño;
 import java.io.*;
 
 public abstract class Diseño {
-    String rutaArchivos;
-    File carpeta ;
-    File[] elementos;
+    protected String rutaArchivos;
+    protected File carpeta ;
+    protected File[] elementos;
 
     public Diseño(String ruta) throws FileNotFoundException {
-        if (rutaVálida(rutaArchivos)) {
-            this.rutaArchivos = ruta;
+        if (rutaVálida(ruta)) {
+            rutaArchivos = ruta;
         }
     }
 
@@ -24,5 +24,16 @@ public abstract class Diseño {
             throw new FileNotFoundException();
         }
         return true;
+    }
+
+    public String getNombreCarpeta(String ruta) {
+        StringBuilder nombreCarpeta = new StringBuilder();
+
+        for (int i = ruta.length()-1; ; i--) {
+            char charActual = ruta.charAt(i);
+            if (charActual == '/') break;
+            nombreCarpeta.append(charActual);
+        }
+        return nombreCarpeta.reverse().toString();
     }
 }

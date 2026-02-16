@@ -1,44 +1,17 @@
 package Logic.CrearArchivos;
 
+import Logic.Diseño.Diseño;
+
 import java.io.*;
 
-public class CrearArchivos {
-    String rutaArchivos;
-    File carpeta ;
+public class CrearArchivos extends Diseño {
     int cantidadDeArchivos;
 
     // Esta clase crea archivos donde se especifique, no en un lugar por defecto.
     public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
-        if (rutaVálida(rutaCrear)) {
-            rutaArchivos = rutaCrear;
-            cantidadDeArchivos = cantidad;
-        }
+        super(rutaCrear);
+        cantidadDeArchivos = cantidad;
         crearArchivos();
-    }
-
-    public boolean rutaVálida(String rutaCrear) throws FileNotFoundException{
-        carpeta = new File(rutaCrear);
-
-        if (!carpeta.exists()) {
-            System.out.println("La ruta no existe.");
-            throw new FileNotFoundException();
-        }
-        if (!carpeta.isDirectory()) {
-            System.out.println("La ruta no es una carpeta.");
-            throw new FileNotFoundException();
-        }
-        return true;
-    }
-
-    public String getNombreCarpeta(String rutaCrear) {
-        StringBuilder nombreCarpeta = new StringBuilder();
-
-        for (int i = rutaCrear.length()-1; ; i--) {
-            char charActual = rutaCrear.charAt(i);
-            if (charActual == '/') break;
-            nombreCarpeta.append(charActual);
-        }
-        return nombreCarpeta.reverse().toString();
     }
 
     public void crearArchivos() {
