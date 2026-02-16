@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class TestCrearArchivos {
     public static void main(String[] args) throws FileNotFoundException {
-        String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaDos";
+        String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Logic/CrearArchivos/Archivos";
         CrearArchivos ca = new CrearArchivos(ruta, 5);
         System.out.println(ca.getNombreCarpeta(ruta));
     }

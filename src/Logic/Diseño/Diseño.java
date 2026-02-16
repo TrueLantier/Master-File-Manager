@@ -2,18 +2,18 @@ package Logic.Diseño;
 import java.io.*;
 
 public abstract class Diseño {
-    String rutaNombres;
+    String rutaArchivos;
     File carpeta ;
     File[] elementos;
 
-    public Diseño() throws FileNotFoundException {
-        if (rutaVálida(rutaNombres)) {
-            this.rutaNombres = rutaNombres;
+    public Diseño(String ruta) throws FileNotFoundException {
+        if (rutaVálida(rutaArchivos)) {
+            this.rutaArchivos = ruta;
         }
     }
 
-    public boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
-        carpeta = new File(rutaNombres);
+    public boolean rutaVálida(String ruta) throws FileNotFoundException{
+        carpeta = new File(ruta);
 
         if (!carpeta.exists()) {
             System.out.println("La ruta no existe.");

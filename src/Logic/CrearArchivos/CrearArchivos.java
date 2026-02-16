@@ -7,16 +7,17 @@ public class CrearArchivos {
     File carpeta ;
     int cantidadDeArchivos;
 
-    public CrearArchivos(String ruta, int cantidad) throws FileNotFoundException{
-        if (rutaVálida(ruta)) {
-            rutaArchivos = ruta;
+    // Esta clase crea archivos donde se especifique, no en un lugar por defecto.
+    public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
+        if (rutaVálida(rutaCrear)) {
+            rutaArchivos = rutaCrear;
             cantidadDeArchivos = cantidad;
         }
         crearArchivos();
     }
 
-    public boolean rutaVálida(String rutaNombres) throws FileNotFoundException{
-        carpeta = new File(rutaNombres);
+    public boolean rutaVálida(String rutaCrear) throws FileNotFoundException{
+        carpeta = new File(rutaCrear);
 
         if (!carpeta.exists()) {
             System.out.println("La ruta no existe.");
@@ -29,11 +30,11 @@ public class CrearArchivos {
         return true;
     }
 
-    public String getNombreCarpeta(String rutaArchivos) {
+    public String getNombreCarpeta(String rutaCrear) {
         StringBuilder nombreCarpeta = new StringBuilder();
 
-        for (int i = rutaArchivos.length()-1; ; i--) {
-            char charActual = rutaArchivos.charAt(i);
+        for (int i = rutaCrear.length()-1; ; i--) {
+            char charActual = rutaCrear.charAt(i);
             if (charActual == '/') break;
             nombreCarpeta.append(charActual);
         }

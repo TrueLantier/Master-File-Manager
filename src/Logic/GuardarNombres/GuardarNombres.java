@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class GuardarNombres {
-    String rutaNombres;
-    String rutaDeGuardado = "src/Logic/GuardarNombres/";
+    String rutaArchivos;
+    String rutaDeGuardado = "src/Logic/GuardarNombres/Listas/";
     File carpeta ;
     File[] elementos;
     List<String> nombresArchivos;
@@ -23,7 +23,7 @@ public class GuardarNombres {
 
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         if (rutaVálida(rutaNombres)) {
-            this.rutaNombres = rutaNombres;
+            rutaArchivos = rutaNombres;
         }
         copiarArchivos();
         crearLista();
@@ -74,7 +74,7 @@ public class GuardarNombres {
     }
 
     public void crearLista() {
-        String nombreLista = rutaDeGuardado + getNombreCarpeta(rutaNombres) + ".txt";
+        String nombreLista = rutaDeGuardado + getNombreCarpeta(rutaArchivos) + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
             // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
             for (String elemento: nombresArchivos) {
