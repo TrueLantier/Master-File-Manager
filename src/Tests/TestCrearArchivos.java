@@ -1,5 +1,5 @@
 package Tests;
-
+// Para probar la clase CrearArchivos.
 import Logic.CrearArchivos.CrearArchivos;
 
 import java.io.FileNotFoundException;

@@ -1,4 +1,5 @@
 package Tests;
+// Para probar la clase GuardarNombres.
 import Logic.GuardarNombres.GuardarNombres;
 import java.io.*;
 
