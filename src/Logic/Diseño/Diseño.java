@@ -12,15 +12,16 @@ public abstract class Diseño {
         }
     }
 
+    // Métodos públicos porque en los Test a veces son necesarios para probar si todo funciona bien.
     public boolean rutaVálida(String ruta) throws FileNotFoundException{
         carpeta = new File(ruta);
 
         if (!carpeta.exists()) {
-            System.out.println("La ruta no existe.");
+            System.out.println("ERROR: La ruta no existe.");
             throw new FileNotFoundException();
         }
         if (!carpeta.isDirectory()) {
-            System.out.println("La ruta no es una carpeta.");
+            System.out.println("ERROR: La ruta no es una carpeta.");
             throw new FileNotFoundException();
         }
         return true;

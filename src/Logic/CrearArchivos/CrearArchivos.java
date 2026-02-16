@@ -11,13 +11,26 @@ public class CrearArchivos extends Diseño {
     public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
         super(rutaCrear);
         cantidadDeArchivos = cantidad;
-        crearArchivos();
+        //crearArchivos();
+        //crearCarpetas();
     }
 
     public void crearArchivos() {
         for (int i = 1; i <= cantidadDeArchivos; i++) {
             String nombreLista = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
                   i  + ".txt";
+            try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
+
+            }   catch (IOException e) {
+                System.out.println("Error en la escritura de los archivos." + e.getMessage());
+            }
+        }
+    }
+
+    public void crearCarpetas() {
+        for (int i = 1; i <= cantidadDeArchivos; i++) {
+            String nombreLista = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
+                    i;
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
 
             }   catch (IOException e) {

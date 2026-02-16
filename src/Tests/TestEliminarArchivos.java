@@ -2,7 +2,7 @@ package Tests;
 // Para Probar la clase EliminarArchivos.
 import Logic.EliminarArchivos.EliminarArchivos;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class TestEliminarArchivos {
     public static void main(String[] args) throws FileNotFoundException {
