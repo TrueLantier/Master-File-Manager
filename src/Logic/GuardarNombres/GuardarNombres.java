@@ -1,5 +1,7 @@
 package Logic.GuardarNombres;
-
+/*
+-Guarda todos los nombres de los archivos de un directorio en una archivo.txt.
+ */
 import Logic.Diseño.Diseño;
 
 import java.io.*;
@@ -14,6 +16,7 @@ public class GuardarNombres extends Diseño {
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);
 
+    // No lista las carpetas.
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         super(rutaNombres);
         copiarArchivos();

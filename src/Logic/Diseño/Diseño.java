@@ -1,10 +1,12 @@
 package Logic.Diseño;
 import java.io.*;
+import java.util.Scanner; // De momento.
 
 public abstract class Diseño {
     protected String rutaArchivos;
     protected File carpeta ;
     protected File[] elementos;
+    protected Scanner scanner = new Scanner(System.in);
 
     public Diseño(String ruta) throws FileNotFoundException {
         if (rutaVálida(ruta)) {

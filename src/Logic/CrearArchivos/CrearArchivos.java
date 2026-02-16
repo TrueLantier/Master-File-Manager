@@ -1,5 +1,7 @@
 package Logic.CrearArchivos;
-
+/*
+-Crea archivos y carpetas.
+ */
 import Logic.Diseño.Diseño;
 
 import java.io.*;
@@ -28,29 +30,18 @@ public class CrearArchivos extends Diseño {
     }
 
     public void crearCarpetas() {
-        File NuevaCarpeta = new File(rutaArchivos + "/Carpeta");
-
-        boolean carpetaR = NuevaCarpeta.canRead();
-        boolean carpetaW = NuevaCarpeta.canWrite();
-        boolean carpeta1 = NuevaCarpeta.mkdirs();
-
-
-        if (carpeta1) {
-            System.out.println("Algo pasa.");
-        }   else {
-            System.out.println("Algo no pasa.");
+        File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta");
+        nuevaCarpeta.mkdir();
+    }
+    public void crearCarpetas(int num) {
+        for (int i = 1; i <= num; i++) {
+            File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta" + i);
+            nuevaCarpeta.mkdir();
         }
+    }
 
-        if (carpetaR) {
-            System.out.println("Se puede leer.");
-        }   else {
-            System.out.println("No se puede leer");
-        }
-
-        if (carpetaW) {
-            System.out.println("Se puede escribir.");
-        }   else {
-            System.out.println("No se puede escribir.");
-        }
+    public void elementosACrear() {
+        System.out.println("¿Qué desea crear?");
+        System.out.println("");
     }
 }
