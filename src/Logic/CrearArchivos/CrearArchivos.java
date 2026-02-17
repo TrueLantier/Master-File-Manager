@@ -41,7 +41,17 @@ public class CrearArchivos extends Diseño {
     }
 
     public void elementosACrear() {
-        System.out.println("¿Qué desea crear?");
-        System.out.println("");
+        System.out.println("¿Qué desea crear? Ingrese el número de la opción:");
+        System.out.println("\t1- Archivos\n\t2- Carpetas\n\t3- Archivos y carpetas");
+        int opción = scanner.nextInt();
+
+        switch (opción) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 }

@@ -10,5 +10,6 @@ public class TestCrearArchivos {
         String ruta2 = "";
         CrearArchivos ca = new CrearArchivos(ruta, 5);
         System.out.println(ca.getNombreCarpeta(ruta));
+        ca.elementosACrear();
     }
 }
