@@ -1,8 +1,8 @@
 package Logic.GuardarNombres;
-/**
- * Esta clase recibe una ruta de un directorio.
- * Luego lista todos los archivos(no carpetas).
- * Los guarda en un List<String> y los copia en un .txt en la ruta designada.
+/*
+  Esta clase recibe una ruta de un directorio.
+  Luego lista todos los archivos(no carpetas).
+  Los guarda en un List<String> y los copia en un .txt en la ruta designada.
  */
 
 import Logic.Diseño.Diseño;
@@ -28,7 +28,7 @@ public class GuardarNombres extends Diseño {
 
     public GuardarNombres(String rutaNombres, String rutaGuardado) throws FileNotFoundException{
         super(rutaNombres);
-        rutaDeGuardado = rutaDeGuardado;
+        rutaDeGuardado = rutaGuardado;
         copiarArchivos();
         crearLista();
     }
@@ -37,7 +37,7 @@ public class GuardarNombres extends Diseño {
         elementos = carpeta.listFiles();
         if (elementos == null) {
             // Más adelante se pueden separar estas condiciones.
-            System.out.println("Carpeta vacía o no se pueden leer los permisos.");
+            System.out.println("Carpeta vacía o no se puede leer por los permisos.");
             return;
         }
 
