@@ -1,7 +1,10 @@
 package Logic.GuardarNombres;
-/*
--Guarda todos los nombres de los archivos de un directorio en una archivo.txt.
+/**
+ * Esta clase recibe una ruta de un directorio.
+ * Luego lista todos los archivos(no carpetas).
+ * Los guarda en un List<String> y los copia en un .txt en la ruta designada.
  */
+
 import Logic.Diseño.Diseño;
 
 import java.io.*;
@@ -19,6 +22,13 @@ public class GuardarNombres extends Diseño {
     // No lista las carpetas.
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         super(rutaNombres);
+        copiarArchivos();
+        crearLista();
+    }
+
+    public GuardarNombres(String rutaNombres, String rutaGuardado) throws FileNotFoundException{
+        super(rutaNombres);
+        rutaDeGuardado = rutaDeGuardado;
         copiarArchivos();
         crearLista();
     }
