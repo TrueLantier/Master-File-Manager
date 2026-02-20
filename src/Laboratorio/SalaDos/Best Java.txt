@@ -1,6 +1,0 @@
-_OceanofPDF_com_Data_Structures_and_Algorithms_in_Java_Michael_T.pdf
-DevOps for Java Developers (Neeraj Kumar).pdf
-Effective_Java_Best_Practices_for_the_Java_Platform_Joshua_Bloch.pdf
-Java_Cookbook_Problems_and_Solutions_for_Java_Developers_final_release.epub
-Packt.Test-Driven.Development.with.Java.pdf
-Troubleshooting Java.pdf

@@ -2,7 +2,7 @@ package Logic.CrearArchivos;
 /*
   Esta clase recibe un directorio. Verifica que existe.
   Luego da la posibilidad de crear archivos o carpetas.
-  Los crea según la cantidad especificada.
+  Los crea según la cantidad especificada. El nombre viene por defecto.
   Esta clase también se puede hacer con más métodos y constructores.
  */
 
@@ -30,14 +30,25 @@ public class CrearArchivos extends Diseño {
         if (tipo.equals("C")) {
             cantidadDeArchivos = cantidad;
             crearCarpetas();
-            return;
         }
     }
 
     public void crearArchivos() {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             String nombreArchivo = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
-                  i  + ".txt";
+                  " " + i  + ".txt";
+            try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
+
+            }   catch (IOException e) {
+                System.out.println("Error en la escritura de los archivos." + e.getMessage());
+            }
+        }
+    }
+
+    public void crearArchivos(String nombreDefecto) {
+        for (int i = 0; i < cantidadDeArchivos; i++) {
+            String nombreArchivo = rutaArchivos + "/" + nombreDefecto + " " +
+                    i  + ".txt";
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
             }   catch (IOException e) {
@@ -53,7 +64,15 @@ public class CrearArchivos extends Diseño {
         }
     }
 
+    public void crearCarpetas(String nombreDefecto) {
+        for (int i = 0; i < cantidadDeArchivos; i++) {
+            File nuevaCarpeta = new File(rutaArchivos + "/" + nombreDefecto + " " + i);
+            nuevaCarpeta.mkdir();
+        }
+    }
+
     public void elementosACrear() {
+        // Aquí los elementos creados lo hacen con un nombre por defecto.
         System.out.println("¿Qué desea crear? Ingrese el número de la opción:");
         System.out.println("\t1- Archivos\n\t2- Carpetas\n\t3- Archivos y carpetas");
         int opción = scanner.nextInt();
@@ -62,13 +81,34 @@ public class CrearArchivos extends Diseño {
             case 1:
                 System.out.println("\t¿Cuántos archivos desea crear?");
                 cantidadDeArchivos = scanner.nextInt();
-                System.out.println("\t¿Desea crearlos con un nombre por defecto?");
+                scanner.nextLine(); // Se come el salto de línea.
+                //Podría preguntar si quiere poner nombre por defecto, pero lo asumiré.
+                System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
-                crearArchivos();
+                crearArchivos(nombrePorDefecto);
                 break;
             case 2:
+                System.out.println("\t¿Cuántas carpetas desea crear?");
+                cantidadDeArchivos = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("\tNombre: ");
+                nombrePorDefecto = scanner.nextLine();
+                crearCarpetas(nombrePorDefecto);
                 break;
             case 3:
+                System.out.println("\t¿Cuántos archivos desea crear?");
+                cantidadDeArchivos = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("\tNombre: ");
+                nombrePorDefecto = scanner.nextLine();
+                crearArchivos(nombrePorDefecto);
+
+                System.out.println("\t¿Cuántas carpetas desea crear?");
+                cantidadDeArchivos = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("\tNombre: ");
+                nombrePorDefecto = scanner.nextLine();
+                crearCarpetas(nombrePorDefecto);
                 break;
         }
     }
