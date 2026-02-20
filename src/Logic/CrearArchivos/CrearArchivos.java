@@ -1,27 +1,44 @@
 package Logic.CrearArchivos;
 /*
--Crea archivos y carpetas.
+  Esta clase recibe un directorio. Verifica que existe.
+  Luego da la posibilidad de crear archivos o carpetas.
+  Los crea según la cantidad especificada.
+  Esta clase también se puede hacer con más métodos y constructores.
  */
+
 import Logic.Diseño.Diseño;
 
 import java.io.*;
 
 public class CrearArchivos extends Diseño {
     int cantidadDeArchivos;
+    String nombrePorDefecto;
+    String tipoDeArchivo;
 
-    // Esta clase crea archivos donde se especifique, no en un lugar por defecto.
-    public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
+    public CrearArchivos(String rutaCrear) throws FileNotFoundException{
         super(rutaCrear);
-        cantidadDeArchivos = cantidad;
-        //crearArchivos();
-        crearCarpetas();
+        elementosACrear();
+    }
+
+    public CrearArchivos(String rutaCrear, String tipo, int cantidad) throws FileNotFoundException{
+        super(rutaCrear);
+        if (tipo.equals("A")) {
+            cantidadDeArchivos = cantidad;
+            crearArchivos();
+            return;
+        }
+        if (tipo.equals("C")) {
+            cantidadDeArchivos = cantidad;
+            crearCarpetas();
+            return;
+        }
     }
 
     public void crearArchivos() {
-        for (int i = 1; i <= cantidadDeArchivos; i++) {
-            String nombreLista = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
+        for (int i = 0; i < cantidadDeArchivos; i++) {
+            String nombreArchivo = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
                   i  + ".txt";
-            try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
+            try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
             }   catch (IOException e) {
                 System.out.println("Error en la escritura de los archivos." + e.getMessage());
@@ -30,12 +47,8 @@ public class CrearArchivos extends Diseño {
     }
 
     public void crearCarpetas() {
-        File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta");
-        nuevaCarpeta.mkdir();
-    }
-    public void crearCarpetas(int num) {
-        for (int i = 1; i <= num; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta" + i);
+        for (int i = 0; i < cantidadDeArchivos; i++) {
+            File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta " + i);
             nuevaCarpeta.mkdir();
         }
     }
@@ -47,6 +60,11 @@ public class CrearArchivos extends Diseño {
 
         switch (opción) {
             case 1:
+                System.out.println("\t¿Cuántos archivos desea crear?");
+                cantidadDeArchivos = scanner.nextInt();
+                System.out.println("\t¿Desea crearlos con un nombre por defecto?");
+                nombrePorDefecto = scanner.nextLine();
+                crearArchivos();
                 break;
             case 2:
                 break;
