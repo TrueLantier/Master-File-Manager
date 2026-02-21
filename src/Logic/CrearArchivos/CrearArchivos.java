@@ -60,6 +60,9 @@ public class CrearArchivos extends Diseño {
     public void crearCarpetas() {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta " + i);
+            if (sobreescritura(nuevaCarpeta)) {
+                continue;
+            }
             nuevaCarpeta.mkdir();
         }
     }
@@ -67,6 +70,9 @@ public class CrearArchivos extends Diseño {
     public void crearCarpetas(String nombreDefecto) {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + "/" + nombreDefecto + " " + i);
+            if (sobreescritura(nuevaCarpeta)) {
+                continue;
+            }
             nuevaCarpeta.mkdir();
         }
     }

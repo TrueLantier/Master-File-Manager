@@ -23,7 +23,7 @@ public abstract class Diseño {
             throw new FileNotFoundException();
         }
         if (!carpeta.isDirectory()) {
-            System.out.println("ERROR: La ruta no es una carpeta.");
+            System.out.println("ERROR: La ruta no es un directorio.");
             throw new FileNotFoundException();
         }
         return true;
@@ -38,5 +38,17 @@ public abstract class Diseño {
             nombreCarpeta.append(charActual);
         }
         return nombreCarpeta.reverse().toString();
+    }
+
+    public boolean sobreescritura(File archivo) {
+        if (archivo.isDirectory()) {
+            System.out.println("La carpeta que desea crear ya existe. ¿Desea sobreescribirla? 's/n'");
+            String sobreescribir = scanner.nextLine();
+            if (sobreescribir.equals("s"))
+                return false;
+            if (sobreescribir.equals("n"))
+                return true;
+        }
+        return false;
     }
 }
