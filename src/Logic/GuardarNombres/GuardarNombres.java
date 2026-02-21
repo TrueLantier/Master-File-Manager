@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class GuardarNombres extends Diseño {
-    String rutaDeGuardado = "src/Logic/GuardarNombres/Listas/"; // Posible modificación.
+    String rutaDeGuardado = "src/Logic/GuardarNombres/Listas/";
     List<String> nombresArchivos;
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);

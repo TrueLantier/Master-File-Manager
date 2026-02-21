@@ -1,6 +1,6 @@
 package Logic.Diseño;
 import java.io.*;
-import java.util.Scanner; // De momento.
+import java.util.Scanner;
 
 public abstract class Diseño {
     protected String rutaArchivos;
@@ -49,6 +49,7 @@ public abstract class Diseño {
             if (sobreescribir.equals("n"))
                 return true;
         }
+
         return false;
     }
 }

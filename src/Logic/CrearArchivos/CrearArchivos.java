@@ -13,11 +13,16 @@ import java.io.*;
 public class CrearArchivos extends Diseño {
     int cantidadDeArchivos;
     String nombrePorDefecto;
-    String tipoDeArchivo;
+    String tipoDeArchivo; // Eliminar si no se usa.
 
     public CrearArchivos(String rutaCrear) throws FileNotFoundException{
         super(rutaCrear);
         elementosACrear();
+    }
+
+    public CrearArchivos(String rutaCrear, String[] carpetasAnidadas) throws FileNotFoundException {
+        super(rutaCrear);
+        crearCarpetas(carpetasAnidadas);
     }
 
     public CrearArchivos(String rutaCrear, String tipo, int cantidad) throws FileNotFoundException{
@@ -30,6 +35,19 @@ public class CrearArchivos extends Diseño {
         if (tipo.equals("C")) {
             cantidadDeArchivos = cantidad;
             crearCarpetas();
+        }
+    }
+
+    public CrearArchivos(String rutaCrear, String tipo, int cantidad, String nombreDefecto) throws FileNotFoundException{
+        super(rutaCrear);
+        if (tipo.equals("A")) {
+            cantidadDeArchivos = cantidad;
+            crearArchivos(nombreDefecto);
+            return;
+        }
+        if (tipo.equals("C")) {
+            cantidadDeArchivos = cantidad;
+            crearCarpetas(nombreDefecto);
         }
     }
 
@@ -75,6 +93,15 @@ public class CrearArchivos extends Diseño {
             }
             nuevaCarpeta.mkdir();
         }
+    }
+
+    public void crearCarpetas(String[] carpetasAnidadas) {
+        StringBuilder estructura = new StringBuilder(rutaArchivos);
+        for (String carpetas : carpetasAnidadas) {
+            estructura.append("/").append(carpetas);
+        }
+        File nuevaCarpeta = new File(String.valueOf(estructura));
+        nuevaCarpeta.mkdirs();
     }
 
     public void elementosACrear() {
