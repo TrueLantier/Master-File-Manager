@@ -2,7 +2,7 @@ Esta clase recibe un directorio. Verifica que existe.
 Luego da la posibilidad de crear archivos o carpetas.
 Los crea según la cantidad especificada. El nombre viene por defecto.
 Esta clase también se puede hacer con más métodos y constructores.
+Se pueden generar carpetas anidadas.
 
-Se puede agregar que se creen carpetas anidadas.
 ¿Si la carpeta ya existe, sobreescribir? La sobreescritura se puede preguntar al usuario.
 De momento la pondré como otro parámetro.

@@ -1,5 +1,5 @@
-1- Buscar la función de los métodos de la clase File: exists(), isDirectory(), listFiles().
+1- Buscar la función de los métodos de la clase File: exists(), isDirectory(), listFiles(), list().
 2- Clase Collections. El sort() ordena alfabéticamente pero teniendo prioridad las mayúsculas.
 3- Clase Collator y Locale.
 4- Repasar herencia.
-5- El método ignoreCase() de String.
+5- El método ignoreCase(), trim(), valueOf() de String.

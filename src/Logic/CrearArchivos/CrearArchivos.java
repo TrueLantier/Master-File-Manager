@@ -1,10 +1,4 @@
 package Logic.CrearArchivos;
-/*
-  Esta clase recibe un directorio. Verifica que existe.
-  Luego da la posibilidad de crear archivos o carpetas.
-  Los crea según la cantidad especificada. El nombre viene por defecto.
-  Esta clase también se puede hacer con más métodos y constructores.
- */
 
 import Logic.Diseño.Diseño;
 
@@ -13,9 +7,8 @@ import java.io.*;
 public class CrearArchivos extends Diseño {
     int cantidadDeArchivos;
     String nombrePorDefecto;
-    String tipoDeArchivo; // Eliminar si no se usa.
 
-    public CrearArchivos(String rutaCrear) throws FileNotFoundException{
+    public CrearArchivos(String rutaCrear) throws FileNotFoundException{ // Constructor más completo.
         super(rutaCrear);
         elementosACrear();
     }
@@ -55,6 +48,12 @@ public class CrearArchivos extends Diseño {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             String nombreArchivo = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
                   " " + i  + ".txt";
+
+            File nuevoArchivo = new File(nombreArchivo);
+            if (sobreescritura(nuevoArchivo)) {
+                continue;
+            }
+
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
             }   catch (IOException e) {
@@ -101,13 +100,14 @@ public class CrearArchivos extends Diseño {
             estructura.append("/").append(carpetas);
         }
         File nuevaCarpeta = new File(String.valueOf(estructura));
+        if (sobreescritura(nuevaCarpeta)) return;
         nuevaCarpeta.mkdirs();
     }
 
     public void elementosACrear() {
         // Aquí los elementos creados lo hacen con un nombre por defecto.
         System.out.println("¿Qué desea crear? Ingrese el número de la opción:");
-        System.out.println("\t1- Archivos\n\t2- Carpetas\n\t3- Archivos y carpetas");
+        System.out.println("\t1- Archivos\n\t2- Carpetas\n\t3- Archivos y carpetas\n\t4- Carpetas anidadas");
         int opción = scanner.nextInt();
 
         switch (opción) {
@@ -142,6 +142,9 @@ public class CrearArchivos extends Diseño {
                 System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
                 crearCarpetas(nombrePorDefecto);
+                break;
+            case 4:
+
                 break;
         }
     }

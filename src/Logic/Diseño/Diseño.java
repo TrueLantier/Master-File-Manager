@@ -43,7 +43,16 @@ public abstract class Diseño {
     public boolean sobreescritura(File archivo) {
         if (archivo.isDirectory()) {
             System.out.println("La carpeta que desea crear ya existe. ¿Desea sobreescribirla? 's/n'");
-            String sobreescribir = scanner.nextLine();
+            String sobreescribir = scanner.nextLine().trim().toLowerCase();
+            if (sobreescribir.equals("s"))
+                return false;
+            if (sobreescribir.equals("n"))
+                return true;
+        }
+
+        if (archivo.exists()) {
+            System.out.println("El archivo que desea crear ya existe. ¿Desea sobreescribirlo? 's/n'");
+            String sobreescribir = scanner.nextLine().trim().toLowerCase();
             if (sobreescribir.equals("s"))
                 return false;
             if (sobreescribir.equals("n"))
