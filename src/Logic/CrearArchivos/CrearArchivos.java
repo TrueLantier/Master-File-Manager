@@ -66,6 +66,12 @@ public class CrearArchivos extends Diseño {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             String nombreArchivo = rutaArchivos + "/" + nombreDefecto + " " +
                     i  + ".txt";
+
+            File nuevoArchivo = new File(nombreArchivo);
+            if (sobreescritura(nuevoArchivo)) {
+                continue;
+            }
+
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
             }   catch (IOException e) {

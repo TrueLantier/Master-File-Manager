@@ -3,3 +3,6 @@
 3- Clase Collator y Locale.
 4- Repasar herencia.
 5- El método ignoreCase(), trim(), valueOf() de String.
+¿Hay alguna forma mejor de hacer las cosas que hacer varios constructores?
+Leer respuestas de DeepSeek.
+FileFilter(), FilenameFilter(), length(), getAbsolutePath(), getCanonicalPath()
