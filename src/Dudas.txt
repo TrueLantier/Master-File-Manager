@@ -1,6 +1,6 @@
 1- Buscar la función de los métodos de la clase File: exists(), isDirectory(), listFiles(), list(). HECHO
 2- Clase Collections. El sort() ordena alfabéticamente pero teniendo prioridad las mayúsculas.
-3- Clase Collator y Locale.
+3- Clase Collator y Locale. HECHO
 4- El método ignoreCase(), trim(), valueOf() de String.
 5- ¿Hay alguna forma mejor de hacer las cosas que hacer varios constructores?
 6- FileFilter(), FilenameFilter(), length(), getAbsolutePath(), getCanonicalPath() HECHO
