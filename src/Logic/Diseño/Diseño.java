@@ -1,9 +1,11 @@
 package Logic.Diseño;
+
 import java.io.*;
 import java.util.Scanner;
 
 public abstract class Diseño {
     protected String rutaArchivos;
+    protected final String stop = "stop";
     protected File carpeta ;
     protected File[] elementos;
     protected Scanner scanner = new Scanner(System.in);
@@ -22,8 +24,12 @@ public abstract class Diseño {
             System.out.println("ERROR: La ruta no existe.");
             throw new FileNotFoundException();
         }
-        if (!carpeta.isDirectory()) {
-            System.out.println("ERROR: La ruta no es un directorio.");
+        if (!carpeta.isDirectory() && !carpeta.isFile()) {
+            System.out.println("ERROR: La ruta no es un directorio ni un archivo regular.");
+            throw new FileNotFoundException();
+        }
+        if (!carpeta.canWrite() || !carpeta.canRead()) {
+            System.out.println("ERROR: No hay permisos de escritura o lectura en el directorio actual.");
             throw new FileNotFoundException();
         }
         return true;
@@ -48,6 +54,10 @@ public abstract class Diseño {
                 return false;
             if (sobreescribir.equals("n"))
                 return true;
+            else {
+                System.out.println("Entrada incorrecta. Reintente");
+                sobreescritura(archivo);
+            }
         }
 
         if (archivo.exists()) {
@@ -57,6 +67,10 @@ public abstract class Diseño {
                 return false;
             if (sobreescribir.equals("n"))
                 return true;
+            else {
+                System.out.println("Entrada incorrecta. Reintente");
+                sobreescritura(archivo);
+            }
         }
 
         return false;
