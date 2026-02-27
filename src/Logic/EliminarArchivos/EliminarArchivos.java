@@ -21,6 +21,7 @@ public class EliminarArchivos extends Diseño {
     }
     public EliminarArchivos(String rutaEliminar, String[] eliminarArchivo) throws FileNotFoundException{
         super(rutaEliminar);
+        eliminar(eliminarArchivo);
     }
 
     public void eliminar() {
@@ -43,6 +44,7 @@ public class EliminarArchivos extends Diseño {
             System.out.println("Carpeta vacía. No hay elementos para borrar.");
             return;
         }
+
         System.out.println("Se eliminarán todos los archivos con '" + eliminarArchivo + "' en el nombre.");
         System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
         String eliminar = scanner.nextLine().trim().toLowerCase();
@@ -62,6 +64,32 @@ public class EliminarArchivos extends Diseño {
     }
 
     public void eliminar(String[] eliminarArchivo) {
+        elementos = carpeta.listFiles();
+        if (elementos == null) {
+            System.out.println("Carpeta vacía. No hay elementos para borrar.");
+            return;
+        }
 
+        System.out.println("Se eliminarán todos los archivos con los siguientes nombres:");
+        for (int i = 0; i < eliminarArchivo.length; i++) {
+            System.out.print(eliminarArchivo[i] + " ");
+        }
+        System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
+        String eliminar = scanner.nextLine().trim().toLowerCase();
+
+        if (eliminar.equals("s")) {
+            for (int i = 0; i < eliminarArchivo.length; i++) {
+                for (File elemento: elementos) {
+                    if (elemento.getName().contains(eliminarArchivo[i])) {
+                        elemento.delete();
+                    }
+                }
+            }
+            return;
+        }
+        if (!eliminar.equals("n")) {
+            System.out.println("Entrada incorrecta. Reintente");
+            eliminar(eliminarArchivo);
+        }
     }
 }
