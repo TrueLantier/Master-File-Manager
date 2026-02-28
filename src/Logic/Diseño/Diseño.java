@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public abstract class Diseño {
     protected String rutaArchivos;
-    protected final String stop = "stop";
+    protected boolean stop = false;
     protected File carpeta ;
     protected File[] elementos;
     protected Scanner scanner = new Scanner(System.in);

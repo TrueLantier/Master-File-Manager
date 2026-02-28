@@ -37,8 +37,7 @@ public class GuardarNombres extends Diseño {
     public void copiarArchivos() {
         elementos = carpeta.listFiles();
         if (elementos == null) {
-            // Más adelante se pueden separar estas condiciones.
-            System.out.println("Carpeta vacía o no se puede leer por los permisos.");
+            System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
         }
 
@@ -64,7 +63,7 @@ public class GuardarNombres extends Diseño {
             }
 
         }   catch (IOException e) {
-            System.out.println("Error escribiendo la lista." + e.getMessage());
+            System.out.println("Error escribiendo la lista. " + e.getMessage());
         }
     }
 }

@@ -24,24 +24,10 @@ public class EliminarArchivos extends Diseño {
         eliminar(eliminarArchivo);
     }
 
-    public void eliminar() {
-        System.out.println("¿Está seguro que desea eliminar el archivo seleccionado? 's/n'");
-        String eliminar = scanner.nextLine().trim().toLowerCase();
-
-        if (eliminar.equals("s")) {
-            carpeta.delete();
-            return;
-        }
-        if (!eliminar.equals("n")) {
-            System.out.println("Entrada incorrecta. Reintente");
-            eliminar();
-        }
-    }
-
     public void eliminar(String eliminarArchivo) {
         elementos = carpeta.listFiles();
         if (elementos == null) {
-            System.out.println("Carpeta vacía. No hay elementos para borrar.");
+            System.out.println("Carpeta vacía. No hay elementos para eliminar.");
             return;
         }
 
@@ -66,7 +52,7 @@ public class EliminarArchivos extends Diseño {
     public void eliminar(String[] eliminarArchivo) {
         elementos = carpeta.listFiles();
         if (elementos == null) {
-            System.out.println("Carpeta vacía. No hay elementos para borrar.");
+            System.out.println("Carpeta vacía. No hay elementos para eliminar.");
             return;
         }
 
@@ -74,7 +60,8 @@ public class EliminarArchivos extends Diseño {
         for (int i = 0; i < eliminarArchivo.length; i++) {
             System.out.print(eliminarArchivo[i] + " ");
         }
-        System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
+
+        System.out.println("\n¿Está seguro que desea eliminar los archivos? 's/n'");
         String eliminar = scanner.nextLine().trim().toLowerCase();
 
         if (eliminar.equals("s")) {
@@ -90,6 +77,35 @@ public class EliminarArchivos extends Diseño {
         if (!eliminar.equals("n")) {
             System.out.println("Entrada incorrecta. Reintente");
             eliminar(eliminarArchivo);
+        }
+    }
+
+    public void eliminar() {
+        elementos = carpeta.listFiles();
+        if (elementos == null) {
+            System.out.println("Carpeta vacía. No hay elementos para eliminar.");
+            return;
+        }
+
+        System.out.println("Escriba los números correspondientes a los archivos que va a eliminar. " +
+                "Sepárelos por espacios.");
+        System.out.println("Seleccione: ");
+
+
+
+
+
+
+        System.out.println("¿Está seguro que desea eliminar el archivo seleccionado? 's/n'");
+        String eliminar = scanner.nextLine().trim().toLowerCase();
+
+        if (eliminar.equals("s")) {
+            carpeta.delete();
+            return;
+        }
+        if (!eliminar.equals("n")) {
+            System.out.println("Entrada incorrecta. Reintente");
+            eliminar();
         }
     }
 }
