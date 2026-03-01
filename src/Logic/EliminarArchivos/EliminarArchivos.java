@@ -15,10 +15,12 @@ public class EliminarArchivos extends Diseño {
         super(eliminarArchivo);
         eliminar();
     }
+
     public EliminarArchivos(String rutaEliminar, String eliminarArchivo) throws FileNotFoundException{
         super(rutaEliminar);
         eliminar(eliminarArchivo);
     }
+
     public EliminarArchivos(String rutaEliminar, String[] eliminarArchivo) throws FileNotFoundException{
         super(rutaEliminar);
         eliminar(eliminarArchivo);
@@ -84,12 +86,12 @@ public class EliminarArchivos extends Diseño {
             return;
         }
 
+        // Enlazar de alguna manera los archivos con un número
+
+
         System.out.println("Escriba los números correspondientes a los archivos que va a eliminar. " +
                 "Sepárelos por espacios.");
         System.out.println("Seleccione: ");
-
-
-
 
 
 

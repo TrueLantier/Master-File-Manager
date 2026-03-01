@@ -5,17 +5,17 @@ import Logic.Diseño.Diseño;
 import java.io.*;
 
 public class CrearArchivos extends Diseño {
-    int cantidadDeArchivos;
-    String nombrePorDefecto;
+    private int cantidadDeArchivos;
+    private String nombrePorDefecto;
 
     public CrearArchivos(String rutaCrear) throws FileNotFoundException{ // Constructor más completo.
         super(rutaCrear);
         elementosACrear();
     }
 
-    public CrearArchivos(String rutaCrear, String[] carpetasAnidadas) throws FileNotFoundException {
+    public CrearArchivos(String rutaCrear, String[] carpetas, boolean anidar) throws FileNotFoundException {
         super(rutaCrear);
-        crearCarpetas(carpetasAnidadas);
+        crearCarpetas(carpetas, anidar);
     }
 
     public CrearArchivos(String rutaCrear, String tipo, int cantidad) throws FileNotFoundException{
@@ -80,6 +80,10 @@ public class CrearArchivos extends Diseño {
         }
     }
 
+    public void crearArchivos(String[] nombres) {
+
+    }
+
     public void crearCarpetas() {
         for (int i = 0; i < cantidadDeArchivos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta " + i);
@@ -100,14 +104,25 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    public void crearCarpetas(String[] carpetasAnidadas) {
-        StringBuilder estructura = new StringBuilder(rutaArchivos);
-        for (String carpetas : carpetasAnidadas) {
-            estructura.append("/").append(carpetas);
+    public void crearCarpetas(String[] carpetas, boolean anidar) {
+        if (anidar) {
+            StringBuilder estructura = new StringBuilder(rutaArchivos);
+            for (String nombres : carpetas) {
+                estructura.append("/").append(nombres);
+            }
+            File nuevaCarpeta = new File(String.valueOf(estructura));
+            if (sobreescritura(nuevaCarpeta)) return;
+            nuevaCarpeta.mkdirs();
+            return;
         }
-        File nuevaCarpeta = new File(String.valueOf(estructura));
-        if (sobreescritura(nuevaCarpeta)) return;
-        nuevaCarpeta.mkdirs();
+
+        for (int i = 0; i < carpetas.length; i++) {
+            File nuevaCarpeta = new File(rutaArchivos + "/" + carpetas[i]);
+            if (sobreescritura(nuevaCarpeta)) {
+                continue;
+            }
+            nuevaCarpeta.mkdir();
+        }
     }
 
     public void elementosACrear() {
