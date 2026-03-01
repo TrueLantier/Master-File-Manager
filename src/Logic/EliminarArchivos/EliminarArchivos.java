@@ -25,8 +25,7 @@ public class EliminarArchivos extends Diseño {
     }
 
     public void eliminar(String eliminarArchivo) {
-        elementos = carpeta.listFiles();
-        if (elementos == null) {
+        if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para eliminar.");
             return;
         }
@@ -50,8 +49,7 @@ public class EliminarArchivos extends Diseño {
     }
 
     public void eliminar(String[] eliminarArchivo) {
-        elementos = carpeta.listFiles();
-        if (elementos == null) {
+        if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para eliminar.");
             return;
         }
@@ -81,8 +79,7 @@ public class EliminarArchivos extends Diseño {
     }
 
     public void eliminar() {
-        elementos = carpeta.listFiles();
-        if (elementos == null) {
+        if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para eliminar.");
             return;
         }

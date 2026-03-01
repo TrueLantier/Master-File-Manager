@@ -75,4 +75,9 @@ public abstract class Diseño {
 
         return false;
     }
+
+    public boolean carpetaVacía(){
+        elementos = carpeta.listFiles();
+        return elementos == null;
+    }
 }

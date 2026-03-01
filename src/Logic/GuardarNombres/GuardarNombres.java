@@ -35,8 +35,7 @@ public class GuardarNombres extends Diseño {
     }
 
     public void copiarArchivos() {
-        elementos = carpeta.listFiles();
-        if (elementos == null) {
+        if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
         }

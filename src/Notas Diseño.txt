@@ -6,8 +6,12 @@ OC: Aprender e implementar patrones. // Objetivo Complementario.
 
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
 ** Guardar solo los que tienen algo en el nombre.
-2- Extra: Crear archivos y carpetas. HECHO.
+** Guardar la información en un archivo existente.
+2- Crear archivos y carpetas. HECHO.
+** Pasar los nombres de las carpetas o archivos a crear por un array.
 3- Eliminar archivos. HECHO
+** Pasar los nombres de las carpetas o archivos a eliminar por un array.
+** Búsqueda dentro de las carpetas al eliminar.
 4- Leer y escribir información en archivos.
 5- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 Dividir entre carpetas y archivos normales.
