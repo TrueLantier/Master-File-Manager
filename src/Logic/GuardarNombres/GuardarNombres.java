@@ -1,9 +1,4 @@
 package Logic.GuardarNombres;
-/*
-  Esta clase recibe una ruta de un directorio.
-  Luego lista todos los archivos(no carpetas).
-  Los guarda en un List<String> y los copia en un .txt en la ruta designada.
- */
 
 import Logic.Diseño.Diseño;
 
@@ -19,7 +14,6 @@ public class GuardarNombres extends Diseño {
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);
 
-    // Implementar que se pueda restringir la cantidad de archivos a copiar en la lista. *
     // No lista las carpetas. *
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         super(rutaNombres);
