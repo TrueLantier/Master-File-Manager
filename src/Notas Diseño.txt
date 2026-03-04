@@ -31,3 +31,4 @@ Dividir entre carpetas y archivos normales.
 
 
 
+Formas de obtener rápidamente rutas.

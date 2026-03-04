@@ -28,6 +28,14 @@ public class GuardarNombres extends Diseño {
         crearLista();
     }
 
+    public GuardarNombres(String rutaNombres, String rutaGuardado, String nombres) throws FileNotFoundException {
+        super(rutaNombres);
+        rutaDeGuardado = rutaGuardado;
+        copiarArchivos(nombres);
+        crearLista();
+
+    }
+
     public void copiarArchivos() {
         if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
@@ -38,6 +46,25 @@ public class GuardarNombres extends Diseño {
         for (File elemento: elementos) {
             if (elemento.isFile()) {
                 nombresArchivos.add(elemento.getName());
+            }
+        }
+
+        collator.setStrength(Collator.TERTIARY);
+        nombresArchivos.sort(collator);
+    }
+
+    public void copiarArchivos(String nombres) {
+        if (carpetaVacía()) {
+            System.out.println("Carpeta vacía. No hay elementos para guardar.");
+            return;
+        }
+
+        nombresArchivos = new ArrayList<>();
+        for (File elemento: elementos) {
+            if (elemento.isFile()) {
+                if (elemento.getName().contains(nombres)) {
+                    nombresArchivos.add(elemento.getName());
+                }
             }
         }
 

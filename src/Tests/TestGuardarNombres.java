@@ -7,7 +7,8 @@ public class TestGuardarNombres {
     public static void main(String[] args) throws IOException{
         String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaDos/";
         String ruta2 = "/home/angel/Documentos/Universidad/Autoestudio/Java/Best Java";
-        GuardarNombres gn = new GuardarNombres(ruta2, ruta);
+        String ruta3 = "/home/angel/Documentos/Universidad/Autoestudio/Java";
+        GuardarNombres gn = new GuardarNombres(ruta2, ruta, "Java");
         //gn.crearLista();
         System.out.println(gn.getNombreCarpeta(ruta));
 
