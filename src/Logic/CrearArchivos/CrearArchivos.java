@@ -6,11 +6,15 @@ import java.io.*;
 
 public class CrearArchivos extends Diseño {
     private int cantidadDeArchivos;
-    private String nombrePorDefecto;
 
     public CrearArchivos(String rutaCrear) throws FileNotFoundException{ // Constructor más completo.
         super(rutaCrear);
         elementosACrear();
+    }
+
+    public CrearArchivos(String rutaCrear, String[] archivos) throws FileNotFoundException {
+        super(rutaCrear);
+        crearArchivos(archivos);
     }
 
     public CrearArchivos(String rutaCrear, String[] carpetas, boolean anidar) throws FileNotFoundException {
@@ -81,7 +85,20 @@ public class CrearArchivos extends Diseño {
     }
 
     public void crearArchivos(String[] nombres) {
+        for (String nombre : nombres) {
+            String nombreArchivo = rutaArchivos + "/" + nombre + ".txt";
 
+            File nuevoArchivo = new File(nombreArchivo);
+            if (sobreescritura(nuevoArchivo)) {
+                continue;
+            }
+
+            try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))) {
+
+            } catch (IOException e) {
+                System.out.println("Error en la escritura de los archivos." + e.getMessage());
+            }
+        }
     }
 
     public void crearCarpetas() {
@@ -125,9 +142,10 @@ public class CrearArchivos extends Diseño {
         }
     }
 
+    // Incompleto
     public void elementosACrear() {
-        // Aquí los elementos creados lo hacen con un nombre por defecto.
-        System.out.println("¿Qué desea crear? Ingrese el número de la opción:");
+        String nombrePorDefecto;
+        System.out.println("\t¿Qué desea crear? Ingrese el número de la opción:");
         System.out.println("\t1- Archivos\n\t2- Carpetas\n\t3- Archivos y carpetas\n\t4- Carpetas anidadas");
         int opción = scanner.nextInt();
 
@@ -165,6 +183,11 @@ public class CrearArchivos extends Diseño {
                 crearCarpetas(nombrePorDefecto);
                 break;
             case 4:
+                System.out.println("\t¿Cuántas carpetas anidadas desea crear?");
+                int num = scanner.nextInt();
+                scanner.nextLine(); // Se come el salto de línea.
+                System.out.println("\tEscriba los nombres de las carpetas en orden de anidación.");
+                System.out.println("Escriba 'stop' para detener.");
 
                 break;
         }

@@ -1,6 +1,5 @@
 # Notas de la clase Guardar Nombres.
 ## ¿Qué puede hacer?
-## ¿Comó funciona?
 
 ### Función básica: Guardar todos los nombres de los archivos de una carpeta en un documento .txt.
 
