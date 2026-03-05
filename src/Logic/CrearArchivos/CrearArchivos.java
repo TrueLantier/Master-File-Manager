@@ -121,11 +121,11 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    public void crearCarpetas(String[] carpetas, boolean anidar) {
+    public void crearCarpetas(String[] nombres, boolean anidar) {
         if (anidar) {
             StringBuilder estructura = new StringBuilder(rutaArchivos);
-            for (String nombres : carpetas) {
-                estructura.append("/").append(nombres);
+            for (String nombre : nombres) {
+                estructura.append("/").append(nombre);
             }
             File nuevaCarpeta = new File(String.valueOf(estructura));
             if (sobreescritura(nuevaCarpeta)) return;
@@ -133,8 +133,8 @@ public class CrearArchivos extends Diseño {
             return;
         }
 
-        for (int i = 0; i < carpetas.length; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + "/" + carpetas[i]);
+        for (int i = 0; i < nombres.length; i++) {
+            File nuevaCarpeta = new File(rutaArchivos + "/" + nombres[i]);
             if (sobreescritura(nuevaCarpeta)) {
                 continue;
             }
@@ -142,7 +142,6 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    // Incompleto
     public void elementosACrear() {
         String nombrePorDefecto;
         System.out.println("\t¿Qué desea crear? Ingrese el número de la opción:");
@@ -186,9 +185,19 @@ public class CrearArchivos extends Diseño {
                 System.out.println("\t¿Cuántas carpetas anidadas desea crear?");
                 int num = scanner.nextInt();
                 scanner.nextLine(); // Se come el salto de línea.
-                System.out.println("\tEscriba los nombres de las carpetas en orden de anidación.");
-                System.out.println("Escriba 'stop' para detener.");
+                String[] nombres = new String[num];
+                System.out.println("\tEscriba los nombres de las carpetas en orden de anidación:");
+                for (int i = 0; i < num; i++) {
+                    nombres[i] = scanner.nextLine();
+                }
 
+                StringBuilder estructura = new StringBuilder(rutaArchivos);
+                for (String nombre : nombres) {
+                    estructura.append("/").append(nombre);
+                }
+                File nuevaCarpeta = new File(String.valueOf(estructura));
+                if (sobreescritura(nuevaCarpeta)) return;
+                nuevaCarpeta.mkdirs();
                 break;
         }
     }

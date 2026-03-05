@@ -1,9 +1,4 @@
 package Logic.EliminarArchivos;
-/*
-Esta clase es para eliminar archivos. Va hacia una carpeta, permite una selección de archivos y
-elimina los elegidos. Sin importar si son carpetas o archivos. El usuario verifica su elección.
-También debe dar la opción de eliminar directamente el archivo elegido.
- */
 
 import Logic.Diseño.Diseño;
 
@@ -46,7 +41,7 @@ public class EliminarArchivos extends Diseño {
         }
         if (!eliminar.equals("n")) {
             System.out.println("Entrada incorrecta. Reintente");
-            eliminar(eliminarArchivo);
+            eliminar(eliminarArchivo); // Esto se podría hacer con un while o do-while, pero dejaré la recursividad.
         }
     }
 
@@ -57,17 +52,17 @@ public class EliminarArchivos extends Diseño {
         }
 
         System.out.println("Se eliminarán todos los archivos con los siguientes nombres:");
-        for (int i = 0; i < eliminarArchivo.length; i++) {
-            System.out.print(eliminarArchivo[i] + " ");
+        for (String archivo : eliminarArchivo) {
+            System.out.print(archivo + " ");
         }
 
         System.out.println("\n¿Está seguro que desea eliminar los archivos? 's/n'");
         String eliminar = scanner.nextLine().trim().toLowerCase();
 
         if (eliminar.equals("s")) {
-            for (int i = 0; i < eliminarArchivo.length; i++) {
-                for (File elemento: elementos) {
-                    if (elemento.getName().contains(eliminarArchivo[i])) {
+            for (String archivo : eliminarArchivo) {
+                for (File elemento : elementos) {
+                    if (elemento.getName().contains(archivo)) {
                         elemento.delete();
                     }
                 }
