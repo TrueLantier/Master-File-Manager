@@ -7,11 +7,13 @@ OC: Aprender e implementar patrones. // Objetivo Complementario.
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
 ** Guardar solo los que tienen algo en el nombre. HECHO
 ** Guardar la información en un archivo existente. Opcional.
+** Recursividad para guardar los nombres de archivos de varias carpetas.
 2- Crear archivos y carpetas. HECHO.
 ** Pasar los nombres de las carpetas o archivos a crear por un array. HECHO
 3- Eliminar archivos. HECHO
 ** Pasar los nombres de las carpetas o archivos a eliminar por un array.
 ** Búsqueda dentro de las carpetas al eliminar.
+** Eliminar carpetas con otras carpetas y archivos dentro.
 4- Leer y escribir información en archivos.
 5- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 Dividir entre carpetas y archivos normales.
@@ -28,6 +30,7 @@ Dividir entre carpetas y archivos normales.
 13- Empaquetado, instalación en otros sistemas.
 *14- Tocar nociones de administración de tareas.
 
-
+Recursividad: Para funciones como "Borrar carpeta" o "Copiar carpeta", necesitarás algoritmos recursivos, 
+ya que java.io no borra carpetas que contengan archivos de forma nativa.
 
 Formas de obtener rápidamente rutas.
