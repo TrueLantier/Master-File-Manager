@@ -1,13 +1,10 @@
-ESTAS CLASES NO ESTÁN ORIENTADAS A UN USUARIO RANDOM SINO A MÍ.
-La forma más orientada a un usuario general será para la parte con interfaz.
-
 FASE 1: Implementación básica de 1-5.
 OC: Aprender e implementar patrones. // Objetivo Complementario.
 
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
 ** Guardar solo los que tienen algo en el nombre. HECHO
 ** Guardar la información en un archivo existente. Opcional.
-** Recursividad para guardar los nombres de archivos de varias carpetas.
+** Recursividad para guardar los nombres de archivos de varias carpetas. Opcional.
 2- Crear archivos y carpetas. HECHO.
 ** Pasar los nombres de las carpetas o archivos a crear por un array. HECHO
 3- Eliminar archivos. HECHO

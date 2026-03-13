@@ -1,6 +1,6 @@
-package Logic.EliminarArchivos;
+package logic.eliminararchivos;
 
-import Logic.Diseño.Diseño;
+import logic.diseño.Diseño;
 
 import java.io.*;
 

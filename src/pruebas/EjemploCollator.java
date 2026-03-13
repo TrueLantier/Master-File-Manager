@@ -1,4 +1,4 @@
-package Pruebas;
+package pruebas;
 import java.util.Locale;
 import java.util.*;
 import java.text.Collator;

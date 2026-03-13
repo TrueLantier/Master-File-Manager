@@ -1,4 +1,4 @@
-package Logic.CopiarInformación;
+package logic.copiarinformación;
 
 public class CopiarInformación {
 

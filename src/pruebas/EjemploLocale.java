@@ -1,4 +1,4 @@
-package Pruebas;
+package pruebas;
 import java.util.Locale;
 
 public class EjemploLocale {

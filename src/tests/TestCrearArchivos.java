@@ -1,7 +1,7 @@
-package Tests;
+package tests;
 // Para probar la clase CrearArchivos.
 
-import Logic.CrearArchivos.CrearArchivos;
+import logic.creararchivos.CrearArchivos;
 
 import java.io.*;
 
@@ -10,9 +10,9 @@ public class TestCrearArchivos {
         String[] carpetas = { "Programación", "Herencia", "Polimorfismo" };
         String ruta = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/Laboratorio/SalaDos";
         String ruta2 = "";
-        CrearArchivos ca1 = new CrearArchivos(ruta);
+        //CrearArchivos ca1 = new CrearArchivos(ruta);
         //CrearArchivos ca2 = new CrearArchivos(ruta, carpetas, false);
-        //CrearArchivos ca3 = new CrearArchivos(ruta, "C", 3);
-        //CrearArchivos ca4 = new CrearArchivos(ruta, "C", 3, "angel");
+        CrearArchivos ca3 = new CrearArchivos(ruta, "C", 3); // Nombre por defecto.
+        //CrearArchivos ca4 = new CrearArchivos(ruta, "C", 3, "angel"); // Nombre personalizado.
     }
 }

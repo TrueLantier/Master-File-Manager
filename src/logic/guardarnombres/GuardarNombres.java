@@ -1,6 +1,6 @@
-package Logic.GuardarNombres;
+package logic.guardarnombres;
 
-import Logic.Diseño.Diseño;
+import logic.diseño.Diseño;
 
 import java.io.*;
 import java.text.Collator;
@@ -17,22 +17,18 @@ public class GuardarNombres extends Diseño {
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         super(rutaNombres);
         copiarArchivos();
-        crearLista();
     }
 
     public GuardarNombres(String rutaNombres, String rutaGuardado) throws FileNotFoundException{
         super(rutaNombres);
         rutaDeGuardado = rutaGuardado;
         copiarArchivos();
-        crearLista();
     }
 
     public GuardarNombres(String rutaNombres, String rutaGuardado, String nombres) throws FileNotFoundException {
         super(rutaNombres);
         rutaDeGuardado = rutaGuardado;
         copiarArchivos(nombres);
-        crearLista();
-
     }
 
     public void copiarArchivos() {
@@ -50,6 +46,7 @@ public class GuardarNombres extends Diseño {
 
         collator.setStrength(Collator.TERTIARY);
         nombresArchivos.sort(collator);
+        crearLista();
     }
 
     public void copiarArchivos(String nombres) {
@@ -69,10 +66,11 @@ public class GuardarNombres extends Diseño {
 
         collator.setStrength(Collator.TERTIARY);
         nombresArchivos.sort(collator);
+        crearLista();
     }
 
     public void crearLista() {
-        String nombreLista = rutaDeGuardado + getNombreCarpeta(rutaArchivos) + ".txt";
+        String nombreLista = rutaDeGuardado + getNombreArchivo() + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
             // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
             for (String elemento: nombresArchivos) {

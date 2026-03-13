@@ -1,4 +1,4 @@
-package Useful;
+package useful;
 
 public class UsefulOne {
 

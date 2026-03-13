@@ -1,6 +1,6 @@
-package Logic.CrearArchivos;
+package logic.creararchivos;
 
-import Logic.Diseño.Diseño;
+import logic.diseño.Diseño;
 
 import java.io.*;
 
@@ -50,7 +50,7 @@ public class CrearArchivos extends Diseño {
 
     public void crearArchivos() {
         for (int i = 0; i < cantidadDeArchivos; i++) {
-            String nombreArchivo = rutaArchivos + "/" +getNombreCarpeta(rutaArchivos) +
+            String nombreArchivo = rutaArchivos + "/" +getNombreArchivo() +
                   " " + i  + ".txt";
 
             File nuevoArchivo = new File(nombreArchivo);
