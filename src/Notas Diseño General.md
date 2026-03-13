@@ -5,6 +5,7 @@ OC: Aprender e implementar patrones. // Objetivo Complementario.
 ** Guardar solo los que tienen algo en el nombre. HECHO
 ** Guardar la información en un archivo existente. Opcional.
 ** Recursividad para guardar los nombres de archivos de varias carpetas. Opcional.
+** Preguntar si sobrescribir archivos. 
 2- Crear archivos y carpetas. HECHO.
 ** Pasar los nombres de las carpetas o archivos a crear por un array. HECHO
 3- Eliminar archivos. HECHO

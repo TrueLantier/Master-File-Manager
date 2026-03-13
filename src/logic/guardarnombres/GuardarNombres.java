@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class GuardarNombres extends Diseño {
-    String rutaDeGuardado = "src/Logic/GuardarNombres/Listas/";
+    String rutaDeGuardado = "src/logic/guardarnombres/listas/";
     List<String> nombresArchivos;
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);
@@ -21,8 +21,10 @@ public class GuardarNombres extends Diseño {
 
     public GuardarNombres(String rutaNombres, String rutaGuardado) throws FileNotFoundException{
         super(rutaNombres);
-        rutaDeGuardado = rutaGuardado;
-        copiarArchivos();
+        if (rutaVálida(rutaGuardado)) {
+            rutaDeGuardado = rutaGuardado;
+            copiarArchivos();
+        }
     }
 
     public GuardarNombres(String rutaNombres, String rutaGuardado, String nombres) throws FileNotFoundException {
@@ -80,7 +82,7 @@ public class GuardarNombres extends Diseño {
             }
 
         }   catch (IOException e) {
-            System.out.println("Error escribiendo la lista. " + e.getMessage());
+            System.out.println("Error escribiendo la lista. -> " + e.getMessage());
         }
     }
 }

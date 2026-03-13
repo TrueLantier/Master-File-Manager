@@ -27,21 +27,22 @@ public class EliminarArchivos extends Diseño {
             return;
         }
 
-        System.out.println("Se eliminarán todos los archivos con '" + eliminarArchivo + "' en el nombre.");
-        System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
-        String eliminar = scanner.nextLine().trim().toLowerCase();
+        while (true) {
+            System.out.println("Se eliminarán todos los archivos con '" + eliminarArchivo + "' en el nombre.");
+            System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
+            String eliminar = scanner.nextLine().trim().toLowerCase();
 
-        if (eliminar.equals("s")) {
-            for (File elemento: elementos) {
-                if (elemento.getName().contains(eliminarArchivo)) {
-                    elemento.delete();
+            if (eliminar.equals("s")) {
+                for (File elemento: elementos) {
+                    if (elemento.getName().contains(eliminarArchivo)) {
+                        elemento.delete();
+                    }
                 }
+                return;
             }
-            return;
-        }
-        if (!eliminar.equals("n")) {
+            if (eliminar.equals("n")) { return; }
+
             System.out.println("Entrada incorrecta. Reintente");
-            eliminar(eliminarArchivo); // Esto se podría hacer con un while o do-while, pero dejaré la recursividad.
         }
     }
 
