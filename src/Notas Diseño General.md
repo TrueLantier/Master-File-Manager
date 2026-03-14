@@ -28,4 +28,4 @@ FASE 3:
 Recursividad: Para funciones como "Borrar carpeta" o "Copiar carpeta", necesitarás algoritmos recursivos, 
 ya que java.io no borra carpetas que contengan archivos de forma nativa.
 
-Formas de obtener rápidamente rutas.
+Formas de obtener rápidamente rutas de archivos.
