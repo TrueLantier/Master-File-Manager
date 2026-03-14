@@ -1,7 +1,6 @@
 package logic.eliminararchivos;
 
 import logic.diseño.Diseño;
-
 import java.io.*;
 
 public class EliminarArchivos extends Diseño {
@@ -52,27 +51,28 @@ public class EliminarArchivos extends Diseño {
             return;
         }
 
-        System.out.println("Se eliminarán todos los archivos con los siguientes nombres:");
-        for (String archivo : eliminarArchivo) {
-            System.out.print(archivo + " ");
-        }
-
-        System.out.println("\n¿Está seguro que desea eliminar los archivos? 's/n'");
-        String eliminar = scanner.nextLine().trim().toLowerCase();
-
-        if (eliminar.equals("s")) {
+        while (true) {
+            System.out.println("Se eliminarán todos los archivos con los siguientes nombres:");
             for (String archivo : eliminarArchivo) {
-                for (File elemento : elementos) {
-                    if (elemento.getName().contains(archivo)) {
-                        elemento.delete();
+                System.out.print(archivo + " ");
+            }
+
+            System.out.println("\n¿Está seguro que desea eliminar los archivos? 's/n'");
+            String eliminar = scanner.nextLine().trim().toLowerCase();
+
+            if (eliminar.equals("s")) {
+                for (String archivo : eliminarArchivo) {
+                    for (File elemento : elementos) {
+                        if (elemento.getName().contains(archivo)) {
+                            elemento.delete();
+                        }
                     }
                 }
+                return;
             }
-            return;
-        }
-        if (!eliminar.equals("n")) {
+            if (eliminar.equals("n")) { return; }
+
             System.out.println("Entrada incorrecta. Reintente");
-            eliminar(eliminarArchivo);
         }
     }
 

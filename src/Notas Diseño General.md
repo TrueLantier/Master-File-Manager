@@ -1,32 +1,29 @@
-FASE 1: Implementación básica de 1-5.
-OC: Aprender e implementar patrones. // Objetivo Complementario.
+FASE 1: 
+Implementación básica de 1-4.
+Sentar bases. Todo por consola.
+OC: Aprender e implementar patrones, principios de diseño. // Objetivo Complementario.
 
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
-** Guardar solo los que tienen algo en el nombre. HECHO
-** Guardar la información en un archivo existente. Opcional.
-** Recursividad para guardar los nombres de archivos de varias carpetas. Opcional.
-** Preguntar si sobrescribir archivos. 
 2- Crear archivos y carpetas. HECHO.
-** Pasar los nombres de las carpetas o archivos a crear por un array. HECHO
 3- Eliminar archivos. HECHO
-** Pasar los nombres de las carpetas o archivos a eliminar por un array.
-** Búsqueda dentro de las carpetas al eliminar.
-** Eliminar carpetas con otras carpetas y archivos dentro.
-4- Leer y escribir información en archivos.
-5- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
+4- Agregar íconos a los directorios, varios a la misma vez. Que sea permanente. 
+
+FASE 2:
+5- Renombrar archivos, varios a la misma vez y con condiciones.
+6- Mover archivos de carpeta, varios a la misma vez y con condiciones.
+7- Organizar archivos con condiciones.
+8- Encontrar archivos duplicados(nombre, tamaño, similitudes en ambos aspectos).
+9- Crear comandos para mover archivos a carpetas específicas, sin tener que estar navegando.
+10- Leer y escribir información en archivos.
+11- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 Dividir entre carpetas y archivos normales.
-6- Agregar íconos a los directorios, varios a la misma vez.
 
-
-7- Renombrar archivos, varios a la misma vez y con condiciones.
-8- Mover archivos de carpeta, varios a la misma vez y con condiciones.
-9- Organizar archivos con condiciones.
-10- Encontrar archivos duplicados(nombre, tamaño, similitudes en ambos aspectos).
-11- Crear comandos para mover archivos a carpetas específicas, sin tener que estar navegando.
-12- Ejecutarse desde la terminal con comandos específicos y sin tener que navegar hasta el
+FASE 3:
+12- Hacer una GUI y adaptar todo.
+13- Ejecutarse desde la terminal con comandos específicos y sin tener que navegar hasta el
    directorio del archivo. Esto puede ser necesario o no, ya que le haré una interfaz al proyecto.
-13- Empaquetado, instalación en otros sistemas.
-*14- Tocar nociones de administración de tareas.
+14- Empaquetado, instalación en otros sistemas.
+15- Tocar nociones de administración de tareas. Opcional
 
 Recursividad: Para funciones como "Borrar carpeta" o "Copiar carpeta", necesitarás algoritmos recursivos, 
 ya que java.io no borra carpetas que contengan archivos de forma nativa.

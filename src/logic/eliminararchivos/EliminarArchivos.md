@@ -1,4 +1,4 @@
-# Notas de la clase Eliminar Archivos.
+# Notas de la clase EliminarArchivos.
 ## ¿Qué puede hacer?
 
 ### Función básica: Eliminar carpetas y archivos.
@@ -12,3 +12,6 @@ seleccionada serán eliminados. Hay siempre una verificación para proceder en t
 Va hacia una carpeta, permite una selección de archivos y
 elimina los elegidos. Sin importar si son carpetas o archivos. El usuario verifica su elección.
 También debe dar la opción de eliminar directamente el archivo elegido.
+** Pasar los nombres de las carpetas o archivos a eliminar por un array.
+** Búsqueda dentro de las carpetas al eliminar.
+** Eliminar carpetas con otras carpetas y archivos dentro.

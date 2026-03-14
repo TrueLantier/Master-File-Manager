@@ -6,6 +6,7 @@ import java.util.Scanner;
 public abstract class Diseño {
     protected String rutaArchivos;
     protected boolean stop = false;
+    protected int cantidadDeElementos;
     protected File carpeta ;
     protected File[] elementos;
     protected Scanner scanner = new Scanner(System.in);

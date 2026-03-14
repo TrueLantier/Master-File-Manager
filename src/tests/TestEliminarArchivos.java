@@ -2,7 +2,6 @@ package tests;
 // Para Probar la clase EliminarArchivos.
 
 import logic.eliminararchivos.EliminarArchivos;
-
 import java.io.*;
 
 public class TestEliminarArchivos {

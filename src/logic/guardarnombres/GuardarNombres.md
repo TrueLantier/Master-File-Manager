@@ -8,3 +8,8 @@
 
 
 - También, si se desea guardar solo ciertos archivos (con determinado nombre), se le pasa al programa y solo listará esos.
+
+
+- Guardar la información en un archivo existente. Opcional.
+- Recursividad para guardar los nombres de archivos de varias carpetas. Opcional.
+- Preguntar si sobrescribir archivos.

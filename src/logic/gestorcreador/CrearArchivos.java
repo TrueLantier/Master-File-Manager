@@ -1,57 +1,38 @@
-package logic.creararchivos;
+package logic.gestorcreador;
 
 import logic.diseño.Diseño;
-
 import java.io.*;
 
-public class CrearArchivos extends Diseño {
-    private int cantidadDeArchivos;
+public class CrearArchivos extends Diseño implements GestorCreador{
+
+    public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
+        super(rutaCrear);
+        cantidadDeElementos = cantidad;
+        crear();
+    }
+
+    public CrearArchivos(String rutaCrear, int cantidad, String nombrePorDefecto) throws FileNotFoundException{
+        super(rutaCrear);
+        cantidadDeElementos = cantidad;
+        crear(nombrePorDefecto);
+    }
+
+    public CrearArchivos(String rutaCrear, String[] nombres) throws FileNotFoundException {
+        super(rutaCrear);
+        cantidadDeElementos = nombres.length;
+        crear(nombres);
+    }
 
     public CrearArchivos(String rutaCrear) throws FileNotFoundException{ // Constructor más completo.
         super(rutaCrear);
         elementosACrear();
     }
 
-    public CrearArchivos(String rutaCrear, String[] archivos) throws FileNotFoundException {
-        super(rutaCrear);
-        crearArchivos(archivos);
-    }
-
-    public CrearArchivos(String rutaCrear, String[] carpetas, boolean anidar) throws FileNotFoundException {
-        super(rutaCrear);
-        crearCarpetas(carpetas, anidar);
-    }
-
-    public CrearArchivos(String rutaCrear, String tipo, int cantidad) throws FileNotFoundException{
-        super(rutaCrear);
-        if (tipo.equals("A")) {
-            cantidadDeArchivos = cantidad;
-            crearArchivos();
-            return;
-        }
-        if (tipo.equals("C")) {
-            cantidadDeArchivos = cantidad;
-            crearCarpetas();
-        }
-    }
-
-    public CrearArchivos(String rutaCrear, String tipo, int cantidad, String nombreDefecto) throws FileNotFoundException{
-        super(rutaCrear);
-        if (tipo.equals("A")) {
-            cantidadDeArchivos = cantidad;
-            crearArchivos(nombreDefecto);
-            return;
-        }
-        if (tipo.equals("C")) {
-            cantidadDeArchivos = cantidad;
-            crearCarpetas(nombreDefecto);
-        }
-    }
-
-    public void crearArchivos() {
-        for (int i = 0; i < cantidadDeArchivos; i++) {
-            String nombreArchivo = rutaArchivos + "/" +getNombreArchivo() +
-                  " " + i  + ".txt";
+    @Override
+    public void crear() {
+        for (int i = 0; i < cantidadDeElementos; i++) {
+            String nombreArchivo = rutaArchivos + File.separator +getNombreArchivo() +
+                    " " + i  + ".txt";
 
             File nuevoArchivo = new File(nombreArchivo);
             if (sobreescritura(nuevoArchivo)) {
@@ -66,9 +47,10 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    public void crearArchivos(String nombreDefecto) {
-        for (int i = 0; i < cantidadDeArchivos; i++) {
-            String nombreArchivo = rutaArchivos + "/" + nombreDefecto + " " +
+    @Override
+    public void crear(String nombrePorDefecto) {
+        for (int i = 0; i < cantidadDeElementos; i++) {
+            String nombreArchivo = rutaArchivos + File.separator + nombrePorDefecto + " " +
                     i  + ".txt";
 
             File nuevoArchivo = new File(nombreArchivo);
@@ -84,9 +66,9 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    public void crearArchivos(String[] nombres) {
+    public void crear(String[] nombres) {
         for (String nombre : nombres) {
-            String nombreArchivo = rutaArchivos + "/" + nombre + ".txt";
+            String nombreArchivo = rutaArchivos + File.separator + nombre + ".txt";
 
             File nuevoArchivo = new File(nombreArchivo);
             if (sobreescritura(nuevoArchivo)) {
@@ -101,47 +83,6 @@ public class CrearArchivos extends Diseño {
         }
     }
 
-    public void crearCarpetas() {
-        for (int i = 0; i < cantidadDeArchivos; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + "/Nueva Carpeta " + i);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
-            }
-            nuevaCarpeta.mkdir();
-        }
-    }
-
-    public void crearCarpetas(String nombreDefecto) {
-        for (int i = 0; i < cantidadDeArchivos; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + "/" + nombreDefecto + " " + i);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
-            }
-            nuevaCarpeta.mkdir();
-        }
-    }
-
-    public void crearCarpetas(String[] nombres, boolean anidar) {
-        if (anidar) {
-            StringBuilder estructura = new StringBuilder(rutaArchivos);
-            for (String nombre : nombres) {
-                estructura.append("/").append(nombre);
-            }
-            File nuevaCarpeta = new File(String.valueOf(estructura));
-            if (sobreescritura(nuevaCarpeta)) return;
-            nuevaCarpeta.mkdirs();
-            return;
-        }
-
-        for (int i = 0; i < nombres.length; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + "/" + nombres[i]);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
-            }
-            nuevaCarpeta.mkdir();
-        }
-    }
-
     public void elementosACrear() {
         String nombrePorDefecto;
         System.out.println("\t¿Qué desea crear? Ingrese el número de la opción:");
@@ -151,35 +92,35 @@ public class CrearArchivos extends Diseño {
         switch (opción) {
             case 1:
                 System.out.println("\t¿Cuántos archivos desea crear?");
-                cantidadDeArchivos = scanner.nextInt();
+                cantidadDeElementos = scanner.nextInt();
                 scanner.nextLine(); // Se come el salto de línea.
                 //Podría preguntar si quiere poner nombre por defecto, pero lo asumiré.
                 System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
-                crearArchivos(nombrePorDefecto);
+                crear(nombrePorDefecto);
                 break;
             case 2:
                 System.out.println("\t¿Cuántas carpetas desea crear?");
-                cantidadDeArchivos = scanner.nextInt();
+                cantidadDeElementos = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
-                crearCarpetas(nombrePorDefecto);
+                //crearCarpetas(nombrePorDefecto);
                 break;
             case 3:
                 System.out.println("\t¿Cuántos archivos desea crear?");
-                cantidadDeArchivos = scanner.nextInt();
+                cantidadDeElementos = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
-                crearArchivos(nombrePorDefecto);
+                //crearArchivos(nombrePorDefecto);
 
                 System.out.println("\t¿Cuántas carpetas desea crear?");
-                cantidadDeArchivos = scanner.nextInt();
+                cantidadDeElementos = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("\tNombre: ");
                 nombrePorDefecto = scanner.nextLine();
-                crearCarpetas(nombrePorDefecto);
+                //crearCarpetas(nombrePorDefecto);
                 break;
             case 4:
                 System.out.println("\t¿Cuántas carpetas anidadas desea crear?");
