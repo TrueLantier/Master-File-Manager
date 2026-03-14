@@ -50,16 +50,19 @@ public abstract class Diseño {
     }
 
     public boolean sobreescritura(File archivo) {
-        while (true) {
-            String tipoArchivo = archivo.isDirectory() ? "carpeta" : "archivo";
-            System.out.println(tipoArchivo + " ya existe. ¿Deseas sobreescribir igualmente? 's/n'");
-            String sobreescribir = scanner.nextLine().trim().toLowerCase();
+        if (archivo.exists()) {
+            while (true) {
+                String tipoArchivo = archivo.toString().contains("txt") ? "archivo" : "carpeta";
+                System.out.println(tipoArchivo + " ya existe. ¿Deseas sobreescribir igualmente? 's/n'");
+                String sobreescribir = scanner.nextLine().trim().toLowerCase();
 
-            if (sobreescribir.equals("s")) { return false; }
-            if (sobreescribir.equals("n")) { return true; }
+                if (sobreescribir.equals("s")) { return false; }
+                if (sobreescribir.equals("n")) { return true; }
 
-            System.out.println("Entrada incorrecta. Reintente");
+                System.out.println("Entrada incorrecta. Reintente");
+            }
         }
+        return false;
     }
 
     public boolean carpetaVacía(){
