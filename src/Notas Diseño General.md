@@ -6,7 +6,8 @@ OC: Aprender e implementar patrones, principios de diseño. // Objetivo Compleme
 1- Obtener todos los nombres de los archivos de un directorio y guardar esos nombres en una lista u otro lugar. HECHO.
 2- Crear archivos y carpetas. HECHO.
 3- Eliminar archivos. HECHO
-4- Agregar íconos a los directorios, varios a la misma vez. Que sea permanente. 
+4- Agregar íconos a los directorios, varios a la misma vez. Que sea permanente.
+** Poner sobrescritura predeterminada. Una checkbox en la gui para tener la opción de no preguntar más.
 
 FASE 2:
 5- Renombrar archivos, varios a la misma vez y con condiciones.
@@ -14,9 +15,9 @@ FASE 2:
 7- Organizar archivos con condiciones.
 8- Encontrar archivos duplicados(nombre, tamaño, similitudes en ambos aspectos).
 9- Crear comandos para mover archivos a carpetas específicas, sin tener que estar navegando.
-10- Leer y escribir información en archivos.
-11- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
+10- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 Dividir entre carpetas y archivos normales.
+11- Leer y escribir información en archivos.
 
 FASE 3:
 12- Hacer una GUI y adaptar todo.

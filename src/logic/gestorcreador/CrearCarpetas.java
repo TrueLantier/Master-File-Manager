@@ -26,7 +26,7 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
     @Override
     public void crear() {
         for (int i = 0; i < cantidadDeElementos; i++) {
-            File nuevaCarpeta = new File(rutaArchivos + File.separator +"Nueva Carpeta " + i);
+            File nuevaCarpeta = new File(rutaArchivos + File.separator + "Nueva Carpeta " + i);
             if (sobreescritura(nuevaCarpeta)) {
                 continue;
             }

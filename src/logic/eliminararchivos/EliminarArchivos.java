@@ -5,14 +5,9 @@ import java.io.*;
 
 public class EliminarArchivos extends Diseño {
 
-    public EliminarArchivos(String eliminarArchivo) throws FileNotFoundException {
-        super(eliminarArchivo);
-        eliminar();
-    }
-
-    public EliminarArchivos(String rutaEliminar, String eliminarArchivo) throws FileNotFoundException{
+    public EliminarArchivos(String rutaEliminar, String eliminarArchivo) throws IOException{
         super(rutaEliminar);
-        eliminar(eliminarArchivo);
+        eliminarPorNombre(rutaEliminar, eliminarArchivo);
     }
 
     public EliminarArchivos(String rutaEliminar, String[] eliminarArchivo) throws FileNotFoundException{
@@ -20,26 +15,37 @@ public class EliminarArchivos extends Diseño {
         eliminar(eliminarArchivo);
     }
 
-    public void eliminar(String eliminarArchivo) {
-        if (carpetaVacía()) {
-            System.out.println("Carpeta vacía. No hay elementos para eliminar.");
-            return;
-        }
+    public EliminarArchivos(String eliminarArchivo) throws FileNotFoundException {
+        super(eliminarArchivo);
+        eliminar();
+    }
+
+    public void eliminarPorNombre(String rutaEliminar, String eliminarArchivo) throws IOException{
+//        if (carpetaVacía()) {
+//            System.out.println("Carpeta vacía. No hay elementos para eliminar.");
+//            return;
+//        }
+        File eliminarCarpeta = new File(rutaEliminar);
+        File[] eliminarElementos = eliminarCarpeta.listFiles();
 
         while (true) {
             System.out.println("Se eliminarán todos los archivos con '" + eliminarArchivo + "' en el nombre.");
             System.out.println("¿Está seguro que desea eliminar los archivos? 's/n'");
-            String eliminar = scanner.nextLine().trim().toLowerCase();
+            String opción = scanner.nextLine().trim().toLowerCase();
 
-            if (eliminar.equals("s")) {
-                for (File elemento: elementos) {
+            if (opción.equals("s")) {
+                for (File elemento: eliminarElementos) {
+                    if (elemento.isDirectory()) {
+                        eliminarPorNombre(elemento.getCanonicalPath(), eliminarArchivo);
+                    }
+
                     if (elemento.getName().contains(eliminarArchivo)) {
                         elemento.delete();
                     }
                 }
                 return;
             }
-            if (eliminar.equals("n")) { return; }
+            if (opción.equals("n")) { return; }
 
             System.out.println("Entrada incorrecta. Reintente");
         }
@@ -75,6 +81,19 @@ public class EliminarArchivos extends Diseño {
             System.out.println("Entrada incorrecta. Reintente");
         }
     }
+
+    public void eliminar(File carpeta) {
+        for (File elementos: carpeta.listFiles()) {
+
+        }
+    }
+
+    /*
+    if (elemento.isDirectory()) {
+                            EliminarArchivos ea = new EliminarArchivos(elemento.getCanonicalPath(), eliminarArchivo);
+                            // Lo ideal sería después eliminar el objeto ea para no dejar tantos colgando.
+                        }
+     */
 
     public void eliminar() {
         if (carpetaVacía()) {

@@ -70,4 +70,8 @@ public abstract class Diseño {
         return elementos == null || elementos.length == 0;
         // Una carpeta existente pero vacía devolverá un File[0], que es diferente de null.
     }
+
+//    public boolean carpetaVacía(File[] ){
+//        return elementos == null || elementos.length == 0;
+//    }
 }

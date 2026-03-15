@@ -23,11 +23,6 @@ public class CrearArchivos extends Diseño implements GestorCreador{
         crear(nombres);
     }
 
-    public CrearArchivos(String rutaCrear) throws FileNotFoundException{ // Constructor más completo.
-        super(rutaCrear);
-        elementosACrear();
-    }
-
     @Override
     public void crear() {
         for (int i = 0; i < cantidadDeElementos; i++) {
@@ -83,6 +78,7 @@ public class CrearArchivos extends Diseño implements GestorCreador{
         }
     }
 
+    // Ver qué hacer con esto después.
     public void elementosACrear() {
         String nombrePorDefecto;
         System.out.println("\t¿Qué desea crear? Ingrese el número de la opción:");
