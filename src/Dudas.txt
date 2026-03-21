@@ -3,3 +3,4 @@
 3- Clase Collator y Locale. HECHO
 4- El método ignoreCase(), trim(), valueOf() de String. HECHO
 5- FileFilter(), FilenameFilter(), length(), getAbsolutePath(), getCanonicalPath() HECHO
+6- Métodos de la clase EliminarArchivos. Usan las mismas variables.

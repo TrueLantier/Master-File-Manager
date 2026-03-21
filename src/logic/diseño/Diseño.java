@@ -17,15 +17,11 @@ public abstract class Diseño {
         }
     }
 
-    // Métodos públicos porque en los Test a veces son necesarios para probar si todo funciona bien.
     public boolean rutaVálida(String ruta) throws FileNotFoundException{
         carpeta = new File(ruta);
 
         if (!carpeta.exists()) {
             throw new FileNotFoundException("ERROR: La ruta no existe.");
-        }
-        if (!carpeta.isDirectory() && !carpeta.isFile()) {
-            throw new FileNotFoundException("ERROR: La ruta no es un directorio ni un archivo regular.");
         }
         if (!carpeta.canWrite() || !carpeta.canRead()) {
             throw new FileNotFoundException("ERROR: No hay permisos de escritura o lectura en el directorio actual.");
