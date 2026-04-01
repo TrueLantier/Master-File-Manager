@@ -20,6 +20,8 @@ public class Renombrar extends Diseño {
         renombrar();
     }
 
+
+
     public void renombrar() {
         carpeta.renameTo(nuevoNombre);
     }
