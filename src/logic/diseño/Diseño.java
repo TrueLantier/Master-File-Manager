@@ -29,7 +29,7 @@ public abstract class Diseño {
         return true;
     }
 
-    public String getNombreArchivo() {
+    public String getNombreDirectorio() {
         return carpeta.getName();
     }
 

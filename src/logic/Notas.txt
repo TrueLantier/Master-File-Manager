@@ -1,0 +1,5 @@
+-Crear carpetas y archivos de distintos tipos.
+-Copiar, mover, eliminar ambos.
+-Renombrar.
+
+Determinar comandos por los constructores, no depender de las entradas del usuario.
