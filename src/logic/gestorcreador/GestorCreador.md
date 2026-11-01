@@ -11,3 +11,5 @@ predeterminados o personalizados.
 - Se puede pasar un array con los nombres de los archivos o carpetas a crear.
 
 ---
+- Los archivos son de momento: txt, md, oy, sh, java. Esto es a propósito, si quiere crear otro tipo de archivo
+vaya a la Clase CrearArchivos.java y agrege el tipo en la matriz de tipos de archivos.

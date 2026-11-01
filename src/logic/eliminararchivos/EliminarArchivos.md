@@ -7,10 +7,3 @@
 seleccionada serán eliminados. Hay siempre una verificación para proceder en todas las formas de eliminación.
 
 - Se puede pasar un array con nombres, y se eliminarán los archivos que contengan esos nombres.
-
-
-Va hacia una carpeta, permite una selección de archivos y
-elimina los elegidos. Sin importar si son carpetas o archivos. El usuario verifica su elección.
-También debe dar la opción de eliminar directamente el archivo elegido.
-** Búsqueda dentro de las carpetas al eliminar.
-** Eliminar carpetas con otras carpetas y archivos dentro.

@@ -40,6 +40,7 @@ public class GuardarNombres extends Diseño {
 
     public void copiarNombreArchivos() {
         if (carpetaVacía()) {
+            // Esto se puede quitar la Clase Mensajes.
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
         }
@@ -58,6 +59,7 @@ public class GuardarNombres extends Diseño {
 
     public void copiarNombreArchivos(String nombre) {
         if (carpetaVacía()) {
+            // Esto se puede quitar la Clase Mensajes.
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
         }

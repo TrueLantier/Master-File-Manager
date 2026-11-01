@@ -27,6 +27,7 @@ public class EliminarArchivos extends Diseño {
         eliminarElementos = eliminarCarpeta.listFiles();
 
         if (carpetaVacía(eliminarElementos)) {
+            // Lanzar que la carpeta está vacía con la Clase Mensajes.
             return;
         }
 
@@ -34,7 +35,7 @@ public class EliminarArchivos extends Diseño {
             if (elemento.isDirectory()) {
                 eliminarTodo(elemento.getCanonicalPath());
             }
-            elemento.delete();
+            elemento.delete(); // Poco verificable si se borró bien. Poco control.
         }
     }
 
@@ -43,6 +44,7 @@ public class EliminarArchivos extends Diseño {
         eliminarElementos = eliminarCarpeta.listFiles();
 
         if (carpetaVacía(eliminarElementos)) {
+            // Lanzar que la carpeta está vacía con la Clase Mensajes
             return;
         }
 
@@ -54,6 +56,7 @@ public class EliminarArchivos extends Diseño {
                 elemento.delete();
             }
 
+            // Busca el archivo en subcarpetas.
             if (elemento.isDirectory()) {
                 eliminarPorNombre(elemento.getCanonicalPath(), eliminarArchivo);
             }
@@ -64,33 +67,9 @@ public class EliminarArchivos extends Diseño {
         for (String archivo: eliminarArchivo) {
             eliminarPorNombre(rutaEliminar, archivo);
         }
-
-        // ¿Por qué no funciona?
-        /*
-        eliminarCarpeta = new File(rutaEliminar);
-        eliminarElementos = eliminarCarpeta.listFiles();
-
-        if (carpetaVacía(eliminarElementos)) {
-            return;
-        }
-
-        for (String archivo : eliminarArchivo) {
-            for (File elemento: eliminarElementos) {
-                if (elemento.getName().contains(archivo)) {
-                    if (elemento.isDirectory()) {
-                        eliminarTodo(elemento.getCanonicalPath());
-                    }
-                    elemento.delete();
-                }
-
-                if (elemento.isDirectory()) {
-                    eliminarPorNombre(elemento.getCanonicalPath(), eliminarArchivo);
-                }
-            }
-        }
-         */
     }
 
+    // Conoce de cosas que no debería, interactúa con el usuario.
     public boolean elegir(String eliminarArchivo) {
         while (true) {
             System.out.println("Se eliminarán todos los archivos con '" + eliminarArchivo + "' en el nombre.");

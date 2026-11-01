@@ -30,6 +30,7 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
 //            if (sobreescritura(nuevaCarpeta)) {
 //                continue;
 //            }
+            if (nuevaCarpeta.exists()) { continue;}
             if (!nuevaCarpeta.mkdir()) {
                 throw new RuntimeException("Error creando la carpeta.");
             }
@@ -43,6 +44,7 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
 //            if (sobreescritura(nuevaCarpeta)) {
 //                continue;
 //            }
+            if (nuevaCarpeta.exists()) { continue;}
             if (!nuevaCarpeta.mkdir()) {
                 throw new RuntimeException("Error creando la carpeta.");
             }
@@ -59,7 +61,7 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
             }
             File nuevaCarpeta = new File(String.valueOf(estructura));
             // if (sobreescritura(nuevaCarpeta)) return;
-            nuevaCarpeta.mkdirs();
+            nuevaCarpeta.mkdirs(); // No hay forma de verificar si se creó correctamente sino mirando.
             return;
         }
 
@@ -68,7 +70,10 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
 //            if (sobreescritura(nuevaCarpeta)) {
 //                continue;
 //            }
-            nuevaCarpeta.mkdir();
+            if (nuevaCarpeta.exists()) { continue;}
+            if (!nuevaCarpeta.mkdir()) {
+                throw new RuntimeException("Error creando la carpeta.");
+            }
         }
     }
 }
