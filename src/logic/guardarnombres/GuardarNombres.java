@@ -9,30 +9,36 @@ import java.util.Locale;
 
 public class GuardarNombres extends Diseño {
     String rutaDeGuardado = "src/logic/guardarnombres/listas/";
+    File fileRutaGuardado;
+    File[] elementosAGuardar;
     List<String> nombresArchivos;
     Locale locale = Locale.getDefault();
     Collator collator = Collator.getInstance(locale);
 
     public GuardarNombres(String rutaNombres) throws FileNotFoundException{
         super(rutaNombres);
-        copiarArchivos();
+        copiarNombreArchivos();
     }
 
-    public GuardarNombres(String rutaNombres, String rutaGuardado) throws FileNotFoundException{
+    public GuardarNombres(String rutaNombres, String rutaDeGuardado) throws FileNotFoundException{
         super(rutaNombres);
-        if (rutaVálida(rutaGuardado)) {
-            rutaDeGuardado = rutaGuardado;
-            copiarArchivos();
+        if (rutaVálida(rutaDeGuardado)) {
+            carpeta = new File(rutaNombres);
+            this.rutaDeGuardado = rutaDeGuardado;
+            copiarNombreArchivos();
         }
     }
 
-    public GuardarNombres(String rutaNombres, String rutaGuardado, String nombres) throws FileNotFoundException {
+    public GuardarNombres(String rutaNombres, String rutaDeGuardado, String nombre) throws FileNotFoundException {
         super(rutaNombres);
-        rutaDeGuardado = rutaGuardado;
-        copiarArchivos(nombres);
+        if (rutaVálida(rutaDeGuardado)) {
+            carpeta = new File(rutaNombres);
+            this.rutaDeGuardado = rutaDeGuardado;
+            copiarNombreArchivos(nombre);
+        }
     }
 
-    public void copiarArchivos() {
+    public void copiarNombreArchivos() {
         if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
@@ -50,7 +56,7 @@ public class GuardarNombres extends Diseño {
         crearLista();
     }
 
-    public void copiarArchivos(String nombres) {
+    public void copiarNombreArchivos(String nombre) {
         if (carpetaVacía()) {
             System.out.println("Carpeta vacía. No hay elementos para guardar.");
             return;
@@ -59,7 +65,7 @@ public class GuardarNombres extends Diseño {
         nombresArchivos = new ArrayList<>();
         for (File elemento: elementos) {
             if (elemento.isFile()) {
-                if (elemento.getName().contains(nombres)) {
+                if (elemento.getName().contains(nombre)) {
                     nombresArchivos.add(elemento.getName());
                 }
             }
@@ -71,7 +77,7 @@ public class GuardarNombres extends Diseño {
     }
 
     public void crearLista() {
-        String nombreLista = rutaDeGuardado + getNombreArchivo() + ".txt";
+        String nombreLista = rutaDeGuardado + getNombreDirectorio() + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
             // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
             for (String elemento: nombresArchivos) {

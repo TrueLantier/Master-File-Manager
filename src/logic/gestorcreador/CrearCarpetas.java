@@ -5,43 +5,47 @@ import java.io.*;
 
 public class CrearCarpetas extends Diseño implements GestorCreador{
 
-    public CrearCarpetas(String rutaCrear, int cantidad) throws FileNotFoundException {
+    public CrearCarpetas(String rutaCrear, int cantidad) throws Exception {
         super(rutaCrear);
         cantidadDeElementos = cantidad;
         crear();
     }
 
-    public CrearCarpetas(String rutaCrear, int cantidad, String nombrePorDefecto) throws FileNotFoundException {
+    public CrearCarpetas(String rutaCrear, int cantidad, String nombrePorDefecto) throws Exception {
         super(rutaCrear);
         cantidadDeElementos = cantidad;
         crear(nombrePorDefecto);
     }
 
-    public CrearCarpetas(String rutaCrear,String[] nombres, boolean anidar) throws FileNotFoundException {
+    public CrearCarpetas(String rutaCrear,String[] nombres, boolean anidar) throws Exception {
         super(rutaCrear);
         cantidadDeElementos = nombres.length;
         crear(nombres, anidar);
     }
 
     @Override
-    public void crear() {
+    public void crear() throws Exception {
         for (int i = 0; i < cantidadDeElementos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + File.separator + "Nueva Carpeta " + i);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
+//            if (sobreescritura(nuevaCarpeta)) {
+//                continue;
+//            }
+            if (!nuevaCarpeta.mkdir()) {
+                throw new RuntimeException("Error creando la carpeta.");
             }
-            nuevaCarpeta.mkdir();
         }
     }
 
     @Override
-    public void crear(String nombrePorDefecto) {
+    public void crear(String nombrePorDefecto) throws Exception{
         for (int i = 0; i < cantidadDeElementos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + File.separator + nombrePorDefecto + " " + i);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
+//            if (sobreescritura(nuevaCarpeta)) {
+//                continue;
+//            }
+            if (!nuevaCarpeta.mkdir()) {
+                throw new RuntimeException("Error creando la carpeta.");
             }
-            nuevaCarpeta.mkdir();
         }
     }
 
@@ -54,16 +58,16 @@ public class CrearCarpetas extends Diseño implements GestorCreador{
 
             }
             File nuevaCarpeta = new File(String.valueOf(estructura));
-            if (sobreescritura(nuevaCarpeta)) return;
+            // if (sobreescritura(nuevaCarpeta)) return;
             nuevaCarpeta.mkdirs();
             return;
         }
 
         for (int i = 0; i < cantidadDeElementos; i++) {
             File nuevaCarpeta = new File(rutaArchivos + File.separator + nombres[i]);
-            if (sobreescritura(nuevaCarpeta)) {
-                continue;
-            }
+//            if (sobreescritura(nuevaCarpeta)) {
+//                continue;
+//            }
             nuevaCarpeta.mkdir();
         }
     }

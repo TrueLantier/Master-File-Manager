@@ -18,7 +18,7 @@ public abstract class Diseño {
     }
 
     public boolean rutaVálida(String ruta) throws FileNotFoundException{
-        carpeta = new File(ruta);
+        carpeta = new File(ruta); // carpeta queda enganchada en la primera ruta.
 
         if (!carpeta.exists()) {
             throw new FileNotFoundException("ERROR: La ruta no existe.");
@@ -45,6 +45,9 @@ public abstract class Diseño {
         return nombreCarpeta.reverse().toString();
     }
 
+    /**
+     * Borrar o mejorar.
+      */
     public boolean sobreescritura(File archivo) {
         if (archivo.exists()) {
             while (true) {
@@ -65,6 +68,12 @@ public abstract class Diseño {
         elementos = carpeta.listFiles();
         return elementos == null || elementos.length == 0;
         // Una carpeta existente pero vacía devolverá un File[0], que es diferente de null.
+    }
+
+    protected boolean comprobarEntrada() {
+
+
+        return true;
     }
 
 //    public boolean carpetaVacía(File[] ){

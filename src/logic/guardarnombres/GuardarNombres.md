@@ -13,3 +13,7 @@
 - Guardar la información en un archivo existente. Opcional.
 - Recursividad para guardar los nombres de archivos de varias carpetas. Opcional.
 - Preguntar si sobrescribir archivos.
+
+---
+## Posibles mejoras:
+Guardar nombres de directorios también, buscar en subdirectorios y poner el árbol.

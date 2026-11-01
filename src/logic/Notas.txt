@@ -3,3 +3,5 @@
 -Renombrar.
 
 Determinar comandos por los constructores, no depender de las entradas del usuario.
+
+La validación de entradas la haré aparte, antes de pasar los datos a las clases internas los comprobaré.

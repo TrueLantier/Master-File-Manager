@@ -4,35 +4,38 @@ import logic.diseño.Diseño;
 import java.io.*;
 
 public class CrearArchivos extends Diseño implements GestorCreador{
+    String tipoArchivo;
+    String[] tiposArchivos = { "txt", "md", "java", "sh", "py"};
 
-    public CrearArchivos(String rutaCrear, int cantidad) throws FileNotFoundException{
+    public CrearArchivos(String rutaCrear, int cantidad, int tipoArchivo) throws FileNotFoundException{
         super(rutaCrear);
         cantidadDeElementos = cantidad;
+        this.tipoArchivo = tiposArchivos[tipoArchivo];
         crear();
     }
 
-    public CrearArchivos(String rutaCrear, int cantidad, String nombrePorDefecto) throws FileNotFoundException{
+    public CrearArchivos(String rutaCrear, String nombrePorDefecto, int cantidad, int tipoArchivo) throws FileNotFoundException{
         super(rutaCrear);
         cantidadDeElementos = cantidad;
+        this.tipoArchivo = tiposArchivos[tipoArchivo];
         crear(nombrePorDefecto);
     }
 
-    public CrearArchivos(String rutaCrear, String[] nombres) throws FileNotFoundException {
+    public CrearArchivos(String rutaCrear, String[] nombres, int tipoArchivo) throws FileNotFoundException {
         super(rutaCrear);
         cantidadDeElementos = nombres.length;
+        this.tipoArchivo = tiposArchivos[tipoArchivo];
         crear(nombres);
     }
 
     @Override
     public void crear() {
         for (int i = 0; i < cantidadDeElementos; i++) {
-            String nombreArchivo = rutaArchivos + File.separator +getNombreArchivo() +
-                    " " + i  + ".txt";
-
-            File nuevoArchivo = new File(nombreArchivo);
-            if (sobreescritura(nuevoArchivo)) {
-                continue;
-            }
+            String nombreArchivo = rutaArchivos + File.separator + getNombreDirectorio() +
+                    " " + i  + "." + tipoArchivo;
+//            if (sobreescritura(nuevoArchivo)) {
+//                continue;
+//            }
 
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
@@ -46,12 +49,10 @@ public class CrearArchivos extends Diseño implements GestorCreador{
     public void crear(String nombrePorDefecto) {
         for (int i = 0; i < cantidadDeElementos; i++) {
             String nombreArchivo = rutaArchivos + File.separator + nombrePorDefecto + " " +
-                    i  + ".txt";
-
-            File nuevoArchivo = new File(nombreArchivo);
-            if (sobreescritura(nuevoArchivo)) {
-                continue;
-            }
+                    i  + "." + tipoArchivo;
+//            if (sobreescritura(nuevoArchivo)) {
+//                continue;
+//            }
 
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))){
 
@@ -63,12 +64,10 @@ public class CrearArchivos extends Diseño implements GestorCreador{
 
     public void crear(String[] nombres) {
         for (String nombre : nombres) {
-            String nombreArchivo = rutaArchivos + File.separator + nombre + ".txt";
-
-            File nuevoArchivo = new File(nombreArchivo);
-            if (sobreescritura(nuevoArchivo)) {
-                continue;
-            }
+            String nombreArchivo = rutaArchivos + File.separator + nombre + "." + tipoArchivo;
+//            if (sobreescritura(nuevoArchivo)) {
+//                continue;
+//            }
 
             try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreArchivo))) {
 
@@ -133,7 +132,7 @@ public class CrearArchivos extends Diseño implements GestorCreador{
                     estructura.append("/").append(nombre);
                 }
                 File nuevaCarpeta = new File(String.valueOf(estructura));
-                if (sobreescritura(nuevaCarpeta)) return;
+                // if (sobreescritura(nuevaCarpeta)) return;
                 nuevaCarpeta.mkdirs();
                 break;
         }
