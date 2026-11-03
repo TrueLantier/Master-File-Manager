@@ -1,0 +1,3 @@
+crear       copiar      mover
+renombrar   eliminar    guardar
+        buscar duplicados

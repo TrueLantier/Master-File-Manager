@@ -22,7 +22,6 @@ public class NioCrearCarpeta extends NioDiseño {
 
     public static void crearCarpeta(String ruta, int cantidad) throws IOException {
         validarRuta(ruta);
-        // IlegalArgumentException con cantidad no entera mayor que cero. NOTAAAAAAAAAAAAAAAAAAAAAAAA
 
         for (int i = 0; i < cantidad; i++) {
             Path carpeta = Path.of(ruta, "Nueva carpeta " + i);
@@ -32,7 +31,6 @@ public class NioCrearCarpeta extends NioDiseño {
 
     public static void crearCarpeta(String ruta, String nombre, int cantidad) throws IOException {
         validarRuta(ruta);
-        // IlegalArgumentException con cantidad no entera mayor que cero. NOTAAAAAAAAAAAAAAAAAAAAAAAA
 
         for (int i = 0; i < cantidad; i++) {
             Path carpeta = Path.of(ruta, nombre + " " + i);
@@ -42,7 +40,6 @@ public class NioCrearCarpeta extends NioDiseño {
 
     public static void crearCarpeta(String ruta, String[] nombres, boolean anidar) throws IOException {
         validarRuta(ruta);
-        // Excepción
 
         if (anidar) {
             StringBuilder anidados = new StringBuilder();
