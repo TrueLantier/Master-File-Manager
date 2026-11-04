@@ -42,13 +42,19 @@ public class NioCrearCarpeta extends NioDiseño {
         validarRuta(ruta);
 
         if (anidar) {
-            StringBuilder anidados = new StringBuilder();
+            Path carpetas = Path.of(ruta);
             for (String nombre: nombres) {
-                anidados.append(File.separator).append(nombre);
+                carpetas = carpetas.resolve(nombre);
             }
-            Path carpetas = Path.of(ruta, String.valueOf(anidados));
             Files.createDirectories(carpetas);
             return;
+
+            /**
+             * OTRA FORMA
+             * String subRuta = String.join(File.separator, nombres);
+             * Path path = Path.of(ruta, subRuta);
+             * Files.createDirectories(path);
+             */
         }
 
         for (String nombre: nombres) {

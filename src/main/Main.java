@@ -1,5 +1,6 @@
 package main;
 
+import nio.crear.NioCrearArchivo;
 import nio.crear.NioCrearCarpeta;
 
 import java.io.IOException;
@@ -12,7 +13,5 @@ public class Main {
         String[] nombres2 = { "11", "22", "33"};
 
 
-        NioCrearCarpeta.crearCarpeta(ruta1, nombres, true);
-        NioCrearCarpeta.crearCarpeta(ruta1, nombres2, false);
     }
 }
