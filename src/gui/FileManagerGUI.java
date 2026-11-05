@@ -80,27 +80,24 @@ public class FileManagerGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getActionCommand().equals("Crear")) {
-            JOptionPane.showMessageDialog(null, "Hola");
+
         }
         if (ae.getActionCommand().equals("Copiar")) {
-            JOptionPane.showMessageDialog(null, "Hola");
 
         }
         if (ae.getActionCommand().equals("Mover")) {
-            JOptionPane.showMessageDialog(null, "Hola");
 
         }
         if (ae.getActionCommand().equals("Renombrar")) {
-            JOptionPane.showMessageDialog(null, "Hola");
+
 
         }
         if (ae.getActionCommand().equals("Eliminar")) {
-            JOptionPane.showMessageDialog(null, "Hola");
+
 
         }
         if (ae.getActionCommand().equals("Guardar")) {
-            JAyudas.probarJDialog(frame);
-
+            JAyudas.probarTodo(frame);
         }
         if (ae.getActionCommand().equals("Buscar duplicados")) {
             //
