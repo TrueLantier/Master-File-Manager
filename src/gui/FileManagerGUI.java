@@ -3,6 +3,7 @@ package gui;
 import net.miginfocom.swing.MigLayout;
 import com.formdev.flatlaf.themes.*;
 import com.formdev.flatlaf.*;
+import nio.Conector;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,8 +37,10 @@ public class FileManagerGUI implements ActionListener {
         menuItem1 = new JMenuItem("El Creador");
         menuItem2 = new JMenuItem("Ayuda");
         jMenu.add(menuItem1);
-        jMenuBar.add(menuItem2);
+        jMenu.add(menuItem2);
         jMenuBar.add(jMenu);
+
+        chooser = new JFileChooser();
 
         gestionarBotones();
 
@@ -59,6 +62,7 @@ public class FileManagerGUI implements ActionListener {
 
         prueba = new JTextField(70);
         prueba.setActionCommand("prueba");
+        prueba.setEditable(false);
         mainPanel.add(prueba);
 
 
@@ -94,13 +98,13 @@ public class FileManagerGUI implements ActionListener {
             JOptionPane.showMessageDialog(null, "Hola");
 
         }
-        if (ae.getActionCommand().equals("")) {
-            JOptionPane.showMessageDialog(null, "Hola");
+        if (ae.getActionCommand().equals("Guardar")) {
+            JAyudas.probarJDialog(frame);
 
         }
-        if (ae.getActionCommand().equals("")) {
-            JOptionPane.showMessageDialog(null, "Hola");
-
+        if (ae.getActionCommand().equals("Buscar duplicados")) {
+            //
+            Conector.probar(prueba);
         }
     }
 
