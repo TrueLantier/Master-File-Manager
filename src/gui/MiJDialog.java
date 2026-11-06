@@ -17,7 +17,7 @@ public class MiJDialog {
     public MiJDialog(JFrame frame, String nombre, boolean modal) {
         this.frame = frame;
         dialog = new JDialog(frame, nombre, true);
-        panel = new JPanel(new MigLayout("insets 20, gap 10"));
+        panel = new JPanel(new MigLayout(" insets 20, gap 10"));
 
     }
 

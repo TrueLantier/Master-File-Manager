@@ -80,7 +80,7 @@ public class FileManagerGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getActionCommand().equals("Crear")) {
-            Paneles.crearElección(frame);
+
 
         }
         if (ae.getActionCommand().equals("Copiar")) {
