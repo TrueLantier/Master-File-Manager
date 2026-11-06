@@ -5,8 +5,10 @@ import java.nio.file.Path;
 
 public class Conector {
     static JFileChooser chooser;
+    public static String ruta = "";
 
-    public static void probar(JTextField textField) {
+    public static void guardarRuta(JTextField textField) {
+        // ruta = "";
         chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = chooser.showOpenDialog(null); // Por defecto FILES ONLY.
@@ -14,6 +16,7 @@ public class Conector {
         if (result == JFileChooser.APPROVE_OPTION) {
             Path directorio = chooser.getSelectedFile().toPath();
             textField.setText(directorio.toAbsolutePath().toString());
+            ruta = directorio.toAbsolutePath().toString();
         }
     }
 }

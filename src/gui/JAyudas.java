@@ -1,7 +1,6 @@
 package gui;
 
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.*;
 
 public class JAyudas {
