@@ -148,13 +148,13 @@ public class JAyudas {
 
             System.out.println(incluirSubdirectorios.isSelected());
 
-            dialog.dispose();
+            dialog.dispose(); // Cerrar y liberar el diálogo.
         });
 
         cancelar.addActionListener(e -> dialog.dispose());
 
         dialog.add(panel);
-        dialog.pack();
+        dialog.pack(); // Ajustar las dimensiones de la ventana según el tamaño de los componentes.
         dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true);
     }

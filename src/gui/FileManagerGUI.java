@@ -80,6 +80,7 @@ public class FileManagerGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getActionCommand().equals("Crear")) {
+            Paneles.crearElección(frame);
 
         }
         if (ae.getActionCommand().equals("Copiar")) {
@@ -93,11 +94,11 @@ public class FileManagerGUI implements ActionListener {
 
         }
         if (ae.getActionCommand().equals("Eliminar")) {
-
+            JAyudas.probarTodo(frame);
 
         }
         if (ae.getActionCommand().equals("Guardar")) {
-            JAyudas.probarTodo(frame);
+            JAyudas.probarJDialog(frame);
         }
         if (ae.getActionCommand().equals("Buscar duplicados")) {
             //
