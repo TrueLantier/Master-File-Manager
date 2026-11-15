@@ -1,7 +1,6 @@
 package nio.guardarnombres;
 
 import nio.NioDiseño;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +18,6 @@ public class NioGuardarNombres extends NioDiseño {
     private static String nombrePadre;
     private static final Locale locale = Locale.getDefault();
     private static final Collator collator = Collator.getInstance(locale);
-    Path pathNombres;
     private static List<String> nombresArchivos;
 
     public static void guardarNombres(String rutaNombres) throws IOException {
@@ -29,23 +27,60 @@ public class NioGuardarNombres extends NioDiseño {
         copiarNombresArchivos(path);
     }
 
+    public static void guardarNombres(String rutaNombres, boolean objetivo, String nombre) throws IOException {
+        validarRuta(rutaNombres);
+        Path path = Path.of(rutaNombres);
+        nombrePadre = path.getFileName().toString();
+        copiarNombresArchivos(path, nombre);
+    }
+
     public static void guardarNombres(String rutaNombres, String rutaGuardado) throws IOException{
         validarRuta(rutaNombres);
         validarRuta(rutaDeGuardado);
         rutaDeGuardado = rutaGuardado;
         Path path = Path.of(rutaNombres);
+        nombrePadre = path.getFileName().toString();
+        copiarNombresArchivos(path);
+    }
 
+    public static void guardarNombres(String rutaNombres, String rutaGuardado, boolean objetivo, String nombre) throws IOException{
+        validarRuta(rutaNombres);
+        validarRuta(rutaDeGuardado);
+        rutaDeGuardado = rutaGuardado;
+        Path path = Path.of(rutaNombres);
+        nombrePadre = path.getFileName().toString();
+        copiarNombresArchivos(path, nombre);
     }
 
     private static void copiarNombresArchivos(Path path) throws IOException{ // Copiar todo.
         esVacío(path);
+        // Clase MensajesError
 
         nombresArchivos = new ArrayList<>();
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
             for (Path nombres: stream) {
-                System.out.println(nombres.getFileName());
-                nombresArchivos.add(path.getFileName().toString());
+                nombresArchivos.add(nombres.getFileName().toString());
+            }
+            collator.setStrength(Collator.TERTIARY);
+            nombresArchivos.sort(collator);
+            crearLista();
+        } catch (IOException e) {
+            // Por ver.
+        }
+    }
+
+    public static void copiarNombresArchivos(Path path, String nombreObjetivo) throws IOException{
+        esVacío(path);
+        // Clase MensajesError
+
+        nombresArchivos = new ArrayList<>();
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
+            for (Path nombres: stream) {
+                if (nombres.getFileName().toString().contains(nombreObjetivo)) {
+                    nombresArchivos.add(nombres.getFileName().toString());
+                }
 
             }
             collator.setStrength(Collator.TERTIARY);
@@ -57,7 +92,7 @@ public class NioGuardarNombres extends NioDiseño {
     }
 
     public static void crearLista() {
-        String nombreLista = rutaDeGuardado + nombrePadre + ".txt";
+        String nombreLista = rutaDeGuardado + File.separator + nombrePadre + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
             // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
             for (String elemento: nombresArchivos) {
