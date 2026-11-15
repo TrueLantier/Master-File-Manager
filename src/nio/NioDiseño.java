@@ -1,6 +1,7 @@
 package nio;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -19,7 +20,15 @@ public class NioDiseño {
     }
 
     public static void esVacío(Path path) throws IOException {
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(path)){
+            if (!elementos.iterator().hasNext()) {
+                // Agregar cosas
+                // throw new
+            }
+        }
+    }
 
-        // Files files = Files.createDirectory(path);
+    public static void sobrescribir() {
+
     }
 }

@@ -3,6 +3,7 @@ package main;
 import logic.gestorcreador.CrearArchivos;
 import nio.crear.NioCrearArchivo;
 import nio.crear.NioCrearCarpeta;
+import nio.guardarnombres.NioGuardarNombres;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class Main {
         String[] nombres = { "1", "2", "3"};
         String[] nombres2 = { "11", "22", "33"};
 
-
+        NioGuardarNombres.guardarNombres(ruta1);
 
     }
 }
