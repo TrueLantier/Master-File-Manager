@@ -1,14 +1,14 @@
 package nio.crear;
 
 import nio.NioDiseño;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class NioCrearArchivo extends NioDiseño {
-    public static String tipoArchivo = ".txt"; // Por defecto.
-    public static String[] tiposArchivos = { ".txt", ".md", ".java", ".sh", ".py"};
+
+    private static String tipoArchivo = ".txt"; // Por defecto.
+    private static String[] tiposArchivos = { ".txt", ".md", ".java", ".sh", ".py"};
 
     public static void crearArchivo(String ruta) throws IOException {
         validarRuta(ruta);
@@ -40,22 +40,7 @@ public class NioCrearArchivo extends NioDiseño {
         }
     }
 
-    public static void crearArchivo(String ruta, String[] nombres, boolean anidar) throws IOException {
-        validarRuta(ruta);
-
-        if (anidar) {
-            StringBuilder anidados = new StringBuilder();
-            for (String nombre: nombres) {
-                anidados.append(File.separator).append(nombre);
-            }
-            Path carpetas = Path.of(ruta, String.valueOf(anidados));
-            Files.createDirectories(carpetas);
-            return;
-        }
-
-        for (String nombre: nombres) {
-            Path archivo = Path.of(ruta, nombre);
-            Files.createFile(archivo);
-        }
+    public static void setTipoArchivo(String tipoArchivo) {
+        NioCrearArchivo.tipoArchivo = tipoArchivo;
     }
 }

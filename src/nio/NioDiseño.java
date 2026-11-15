@@ -10,7 +10,7 @@ public class NioDiseño {
         if (!Files.isReadable(path)) {
 
         }
-        if (!Files.isReadable(path)) {
+        if (!Files.isWritable(path)) {
 
         }
         if (!Files.exists(path)) { // Si no existe
@@ -18,5 +18,8 @@ public class NioDiseño {
         }
     }
 
+    public static void esVacío(Path path) throws IOException {
 
+        // Files files = Files.createDirectory(path);
+    }
 }
