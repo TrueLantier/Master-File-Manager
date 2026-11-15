@@ -3,6 +3,7 @@ package nio;
 import javax.swing.*;
 import java.nio.file.Path;
 
+@Deprecated
 public class Conector {
     static JFileChooser chooser;
     public static String ruta = "";

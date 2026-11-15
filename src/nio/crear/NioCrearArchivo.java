@@ -1,29 +1,35 @@
 package nio.crear;
 
-import nio.NioDiseño;
+import nio.manejoerrores.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class NioCrearArchivo extends NioDiseño {
+public class NioCrearArchivo {
 
     private static String tipoArchivo = ".txt"; // Por defecto.
     private static String[] tiposArchivos = { ".txt", ".md", ".java", ".sh", ".py"};
 
     public static void crearArchivo(String ruta) throws IOException {
-        validarRuta(ruta);
+        if (Validador.validar(ruta, "Crear archivo")) {
+            return;
+        }
         Path archivo = Path.of(ruta, "archivo" + tipoArchivo); // Por defecto
         Files.createFile(archivo);
     }
 
     public static void crearArchivo(String ruta, String nombre) throws IOException {
-        validarRuta(ruta);
+        if (Validador.validar(ruta, "Crear archivo")) {
+            return;
+        }
         Path archivo = Path.of(ruta, nombre + tipoArchivo);
         Files.createFile(archivo);
     }
 
     public static void crearArchivo(String ruta, int cantidad) throws IOException {
-        validarRuta(ruta);
+        if (Validador.validar(ruta, "Crear archivo")) {
+            return;
+        }
 
         for (int i = 0; i < cantidad; i++) {
             Path archivo = Path.of(ruta, "archivo " + i + tipoArchivo);
@@ -32,7 +38,9 @@ public class NioCrearArchivo extends NioDiseño {
     }
 
     public static void crearArchivo(String ruta, String nombre, int cantidad) throws IOException {
-        validarRuta(ruta);
+        if (Validador.validar(ruta, "Crear archivo")) {
+            return;
+        }
 
         for (int i = 0; i < cantidad; i++) {
             Path archivo = Path.of(ruta, nombre + " " + i + tipoArchivo);
@@ -42,5 +50,9 @@ public class NioCrearArchivo extends NioDiseño {
 
     public static void setTipoArchivo(String tipoArchivo) {
         NioCrearArchivo.tipoArchivo = tipoArchivo;
+    }
+
+    public static String[] getTiposArchivos() {
+        return tiposArchivos;
     }
 }

@@ -1,6 +1,6 @@
 package nio.guardarnombres;
 
-import nio.NioDiseño;
+import nio.manejoerrores.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class NioGuardarNombres extends NioDiseño {
+public class NioGuardarNombres {
     private static String rutaDeGuardado = "src/nio/guardarnombres/listas";
     private static String nombrePadre;
     private static final Locale locale = Locale.getDefault();
@@ -21,22 +21,30 @@ public class NioGuardarNombres extends NioDiseño {
     private static List<String> nombresArchivos;
 
     public static void guardarNombres(String rutaNombres) throws IOException {
-        validarRuta(rutaNombres);
+        if (Validador.validar(rutaNombres, "Guardar nombres")) {
+            return;
+        }
         Path path = Path.of(rutaNombres);
         nombrePadre = path.getFileName().toString();
         copiarNombresArchivos(path);
     }
 
     public static void guardarNombres(String rutaNombres, boolean objetivo, String nombre) throws IOException {
-        validarRuta(rutaNombres);
+        if (Validador.validar(rutaNombres, "Guardar nombres")) {
+            return;
+        }
         Path path = Path.of(rutaNombres);
         nombrePadre = path.getFileName().toString();
         copiarNombresArchivos(path, nombre);
     }
 
     public static void guardarNombres(String rutaNombres, String rutaGuardado) throws IOException{
-        validarRuta(rutaNombres);
-        validarRuta(rutaDeGuardado);
+        if (Validador.validar(rutaNombres, "Guardar nombres")) {
+            return;
+        }
+        if (Validador.validar(rutaGuardado, "Guardar nombres")) {
+            return;
+        }
         rutaDeGuardado = rutaGuardado;
         Path path = Path.of(rutaNombres);
         nombrePadre = path.getFileName().toString();
@@ -44,8 +52,12 @@ public class NioGuardarNombres extends NioDiseño {
     }
 
     public static void guardarNombres(String rutaNombres, String rutaGuardado, boolean objetivo, String nombre) throws IOException{
-        validarRuta(rutaNombres);
-        validarRuta(rutaDeGuardado);
+        if (Validador.validar(rutaNombres, "Guardar nombres")) {
+            return;
+        }
+        if (Validador.validar(rutaGuardado, "Guardar nombres")) {
+            return;
+        }
         rutaDeGuardado = rutaGuardado;
         Path path = Path.of(rutaNombres);
         nombrePadre = path.getFileName().toString();
@@ -53,8 +65,10 @@ public class NioGuardarNombres extends NioDiseño {
     }
 
     private static void copiarNombresArchivos(Path path) throws IOException{ // Copiar todo.
-        esVacío(path);
-        // Clase MensajesError
+        if (Validador.estáVacío(path)) {
+            System.out.println("No se ejecuta");
+            return;
+        }
 
         nombresArchivos = new ArrayList<>();
 
@@ -70,9 +84,11 @@ public class NioGuardarNombres extends NioDiseño {
         }
     }
 
-    public static void copiarNombresArchivos(Path path, String nombreObjetivo) throws IOException{
-        esVacío(path);
-        // Clase MensajesError
+    private static void copiarNombresArchivos(Path path, String nombreObjetivo) throws IOException{
+        if (Validador.estáVacío(path)) {
+            System.out.println("No se ejecuta");
+            return;
+        }
 
         nombresArchivos = new ArrayList<>();
 
@@ -91,7 +107,7 @@ public class NioGuardarNombres extends NioDiseño {
         }
     }
 
-    public static void crearLista() {
+    private static void crearLista() {
         String nombreLista = rutaDeGuardado + File.separator + nombrePadre + ".txt";
         try (BufferedWriter lista = new BufferedWriter(new FileWriter(nombreLista))){
             // new FileWriter(nombreLista,true); // Para agregar al final del archivo sin sobreescribir.
