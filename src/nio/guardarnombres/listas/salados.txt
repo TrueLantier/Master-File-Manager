@@ -1,7 +1,11 @@
 1
+11
+22
+33
 archivo.txt
 archivo 0.txt
 archivo 1.txt
+Java
 Java 0
 Java 0.java
 Java 0.md
@@ -22,4 +26,3 @@ Java 2.txt
 Nueva carpeta
 Nueva carpeta 0
 Nueva carpeta 1
-Nueva carpeta 2

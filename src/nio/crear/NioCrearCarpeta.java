@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class NioCrearCarpeta {
+    private static final String OPERACIÓN = "Crear carpeta"; // Provisional hasta el enum.
 
     public static void crearCarpeta(String ruta) throws IOException {
         if (Validador.validar(ruta, "Crear carpeta")) {

@@ -9,6 +9,7 @@ public class NioCrearArchivo {
 
     private static String tipoArchivo = ".txt"; // Por defecto.
     private static String[] tiposArchivos = { ".txt", ".md", ".java", ".sh", ".py"};
+    private static final String OPERACIÓN = "Crear archivo"; // Provisional hasta el enum.
 
     public static void crearArchivo(String ruta) throws IOException {
         if (Validador.validar(ruta, "Crear archivo")) {

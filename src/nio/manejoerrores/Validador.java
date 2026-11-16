@@ -2,6 +2,7 @@ package nio.manejoerrores;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.NoSuchElementException;
 
 public class Validador {
 
@@ -10,7 +11,7 @@ public class Validador {
      * Hacer ENUM de operaciones
      */
 
-    public static void validarGeneral(String ruta) throws IOException{
+    private static void validarGeneral(String ruta) throws IOException{
         Path path = Path.of(ruta);
 
         if (!Files.exists(path)) {
@@ -26,13 +27,13 @@ public class Validador {
 
     public static boolean validar(String ruta, String operación) {
         try {
-            Validador.validarGeneral(ruta);
+            validarGeneral(ruta);
         } catch (Exception e) {
             MensajesError.errores.add(new RegistroErrores(
                     ruta, operación, e.getMessage(), e));
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean validarRuta(Path path) {
@@ -50,13 +51,20 @@ public class Validador {
     /**
      * Validadores de operaciones
      * FileAlreadyExistsException
+     * NoSuchElementException
      */
 
-    public static boolean estáVacío(Path path) throws IOException { // Verdadero si ESTÁ VACÍO
-        //Path path = Path.of(ruta);
+    public static boolean estáVacío(Path path, String operación) throws IOException { // Verdadero si ESTÁ VACÍO
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(path)){
-            return !elementos.iterator().hasNext();
+            if (!elementos.iterator().hasNext()) {
+                throw new NoSuchElementException("No hay elementos en esta carpeta.");
+            }
+        } catch (NoSuchElementException e) {
+            MensajesError.errores.add(new RegistroErrores(
+                    path.toString(), operación, e.getMessage(), e));
+            return true;
         }
+        return false;
     }
 
     public static boolean esDirectorio(String ruta) {

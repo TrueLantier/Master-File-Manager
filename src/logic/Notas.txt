@@ -10,3 +10,4 @@ Clase para lanzar mensajes aparte, sería útil, en los métodos de archivos lla
 estáticos.
 
 Ver ese WatchService
+Enum en NioGuardarNombres
