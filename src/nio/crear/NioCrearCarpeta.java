@@ -15,9 +15,15 @@ public class NioCrearCarpeta {
         }
 
         Path carpeta = Path.of(ruta, "Nueva carpeta");
-        if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
-            NioEliminar.eliminarTodo(carpeta.toString());
+
+        if (Files.exists(carpeta)) {
+            if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
+                NioEliminar.eliminarElemento(carpeta.toString());
+            } else {
+                return;
+            }
         }
+
         Files.createDirectory(carpeta);
     }
 
@@ -25,7 +31,17 @@ public class NioCrearCarpeta {
         if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
+
         Path carpeta = Path.of(ruta, nombre);
+
+        if (Files.exists(carpeta)) {
+            if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
+                NioEliminar.eliminarElemento(carpeta.toString());
+            } else {
+                return;
+            }
+        }
+
         Files.createDirectory(carpeta);
     }
 
@@ -36,6 +52,15 @@ public class NioCrearCarpeta {
 
         for (int i = 0; i < cantidad; i++) {
             Path carpeta = Path.of(ruta, "Nueva carpeta " + i);
+
+            if (Files.exists(carpeta)) {
+                if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
+                    NioEliminar.eliminarElemento(carpeta.toString());
+                } else {
+                    continue;
+                }
+            }
+
             Files.createDirectory(carpeta);
         }
     }
@@ -47,6 +72,15 @@ public class NioCrearCarpeta {
 
         for (int i = 0; i < cantidad; i++) {
             Path carpeta = Path.of(ruta, nombre + " " + i);
+
+            if (Files.exists(carpeta)) {
+                if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
+                    NioEliminar.eliminarElemento(carpeta.toString());
+                } else {
+                    continue;
+                }
+            }
+
             Files.createDirectory(carpeta);
         }
     }
@@ -74,6 +108,15 @@ public class NioCrearCarpeta {
 
         for (String nombre: nombres) {
             Path carpetas = Path.of(ruta, nombre);
+
+            if (Files.exists(carpetas)) {
+                if (Validador.sobrescribir(carpetas, Operaciones.CREAR_CARPETA)) {
+                    NioEliminar.eliminarElemento(carpetas.toString());
+                } else {
+                    return;
+                }
+            }
+
             Files.createDirectory(carpetas);
         }
     }

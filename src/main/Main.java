@@ -11,11 +11,12 @@ import java.io.IOException;
 public class Main {
     static void main(String[] args) throws IOException {
         String ruta1 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados";
-        String ruta2 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/22/1";
+        String ruta2 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/22";
         String ruta3 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio";
         String[] nombres = { "1", "2", "3"};
 
 
+        NioEliminar.eliminarTodo(ruta2);
         MensajesError.mostrarErrores();
     }
 }

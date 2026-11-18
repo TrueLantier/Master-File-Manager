@@ -2,23 +2,22 @@ package nio.NioEliminar;
 
 import nio.Operaciones;
 import nio.manejoerrores.*;
-
-import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.Collator;
 
 public class NioEliminar {
-    private static final String OPERACIÓN = "Eliminar";
 
-    public static void eliminar(String elementoEliminar) {
+    public static void eliminarElemento(String elementoEliminar) {
         if (Validador.validar(elementoEliminar, Operaciones.ELIMINAR)) {
             return;
         }
 
         Path path = Path.of(elementoEliminar);
         try {
+            if (Files.isDirectory(path)) {
+                eliminarTodo(path.toString());
+            }
             Files.delete(path);
         } catch (Exception e) {
             MensajesError.agregarError(elementoEliminar, Operaciones.ELIMINAR, e.getMessage(), e);

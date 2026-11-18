@@ -11,6 +11,7 @@ public class Consola {
         String elección = "";
 
         while (true) {
+            System.out.println();
             switch (operaciones) {
                 case CREAR_CARPETA -> {
                     System.out.println("La carpeta que desea crear ya existe. ¿Desea sobrescribir? (s/n):");
@@ -35,7 +36,7 @@ public class Consola {
             }
 
             System.out.println("Agregue 'p' a la respuesta si desea establecer esta opción por defecto" +
-                    "al resto de elementos. Ejemplo: 'sp'");
+                    " al resto de elementos. Ejemplo: 'sp'");
             elección = ENTRADA.nextLine();
             elección = elección.trim().toLowerCase(Locale.ROOT);
 

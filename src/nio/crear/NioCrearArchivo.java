@@ -1,5 +1,6 @@
 package nio.crear;
 
+import nio.NioEliminar.NioEliminar;
 import nio.Operaciones;
 import nio.manejoerrores.*;
 import java.io.IOException;
@@ -10,13 +11,21 @@ public class NioCrearArchivo {
 
     private static String tipoArchivo = ".txt"; // Por defecto.
     public static String[] tiposArchivos = { ".txt", ".md", ".java", ".sh", ".py"};
-    private static final String OPERACIÓN = "Crear archivo"; // Provisional hasta el enum.
 
     public static void crearArchivo(String ruta) throws IOException {
         if (Validador.validar(ruta, Operaciones.CREAR_ARCHIVO)) {
             return;
         }
         Path archivo = Path.of(ruta, "archivo" + tipoArchivo); // Por defecto
+
+        if (Files.exists(archivo)) {
+            if (Validador.sobrescribir(archivo, Operaciones.CREAR_ARCHIVO)) {
+                NioEliminar.eliminarElemento(archivo.toString());
+            } else {
+                return;
+            }
+        }
+
         Files.createFile(archivo);
     }
 
@@ -25,6 +34,15 @@ public class NioCrearArchivo {
             return;
         }
         Path archivo = Path.of(ruta, nombre + tipoArchivo);
+
+        if (Files.exists(archivo)) {
+            if (Validador.sobrescribir(archivo, Operaciones.CREAR_ARCHIVO)) {
+                NioEliminar.eliminarElemento(archivo.toString());
+            } else {
+                return;
+            }
+        }
+
         Files.createFile(archivo);
     }
 
@@ -35,6 +53,15 @@ public class NioCrearArchivo {
 
         for (int i = 0; i < cantidad; i++) {
             Path archivo = Path.of(ruta, "archivo " + i + tipoArchivo);
+
+            if (Files.exists(archivo)) {
+                if (Validador.sobrescribir(archivo, Operaciones.CREAR_ARCHIVO)) {
+                    NioEliminar.eliminarElemento(archivo.toString());
+                } else {
+                    return;
+                }
+            }
+
             Files.createFile(archivo);
         }
     }
@@ -46,6 +73,15 @@ public class NioCrearArchivo {
 
         for (int i = 0; i < cantidad; i++) {
             Path archivo = Path.of(ruta, nombre + " " + i + tipoArchivo);
+
+            if (Files.exists(archivo)) {
+                if (Validador.sobrescribir(archivo, Operaciones.CREAR_ARCHIVO)) {
+                    NioEliminar.eliminarElemento(archivo.toString());
+                } else {
+                    return;
+                }
+            }
+
             Files.createFile(archivo);
         }
     }
