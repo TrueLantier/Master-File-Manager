@@ -1,23 +1,28 @@
 package nio.crear;
 
+import nio.NioEliminar.NioEliminar;
+import nio.Operaciones;
 import nio.manejoerrores.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class NioCrearCarpeta {
-    private static final String OPERACIÓN = "Crear carpeta"; // Provisional hasta el enum.
 
     public static void crearCarpeta(String ruta) throws IOException {
-        if (Validador.validar(ruta, "Crear carpeta")) {
+        if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
+
         Path carpeta = Path.of(ruta, "Nueva carpeta");
+        if (Validador.sobrescribir(carpeta, Operaciones.CREAR_CARPETA)) {
+            NioEliminar.eliminarTodo(carpeta.toString());
+        }
         Files.createDirectory(carpeta);
     }
 
     public static void crearCarpeta(String ruta, String nombre) throws IOException {
-        if (Validador.validar(ruta, "Crear carpeta")) {
+        if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
         Path carpeta = Path.of(ruta, nombre);
@@ -25,7 +30,7 @@ public class NioCrearCarpeta {
     }
 
     public static void crearCarpeta(String ruta, int cantidad) throws IOException {
-        if (Validador.validar(ruta, "Crear carpeta")) {
+        if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
 
@@ -36,7 +41,7 @@ public class NioCrearCarpeta {
     }
 
     public static void crearCarpeta(String ruta, String nombre, int cantidad) throws IOException {
-        if (Validador.validar(ruta, "Crear carpeta")) {
+        if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
 
@@ -47,7 +52,7 @@ public class NioCrearCarpeta {
     }
 
     public static void crearCarpeta(String ruta, String[] nombres, boolean anidar) throws IOException {
-        if (Validador.validar(ruta, "Crear carpeta")) {
+        if (Validador.validar(ruta, Operaciones.CREAR_CARPETA)) {
             return;
         }
 

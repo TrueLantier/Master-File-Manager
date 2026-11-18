@@ -11,3 +11,4 @@ estáticos.
 
 Ver ese WatchService
 Enum en NioGuardarNombres
+Se podría hacer un record para las operaciones exitosas, pero de momento no.

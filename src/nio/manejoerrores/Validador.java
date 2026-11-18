@@ -1,15 +1,15 @@
 package nio.manejoerrores;
 
+import nio.Operaciones;
+import nio.consola.Consola;
+
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 public class Validador {
-
-    /**
-     * Validadores de ruta
-     * Hacer ENUM de operaciones
-     */
+    private static boolean operarPorDefecto = false;
 
     private static void validarGeneral(String ruta) throws IOException{
         Path path = Path.of(ruta);
@@ -25,12 +25,11 @@ public class Validador {
         }
     }
 
-    public static boolean validar(String ruta, String operación) {
+    public static boolean validar(String ruta, Operaciones operación) {
         try {
             validarGeneral(ruta);
         } catch (Exception e) {
-            MensajesError.errores.add(new RegistroErrores(
-                    ruta, operación, e.getMessage(), e));
+            MensajesError.agregarError(ruta, operación, e.getMessage(), e);
             return true;
         }
         return false;
@@ -54,14 +53,13 @@ public class Validador {
      * NoSuchElementException
      */
 
-    public static boolean estáVacío(Path path, String operación) throws IOException { // Verdadero si ESTÁ VACÍO
+    public static boolean estáVacío(Path path, Operaciones operación) throws IOException { // Verdadero si ESTÁ VACÍO
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(path)){
             if (!elementos.iterator().hasNext()) {
                 throw new NoSuchElementException("No hay elementos en esta carpeta.");
             }
         } catch (NoSuchElementException e) {
-            MensajesError.errores.add(new RegistroErrores(
-                    path.toString(), operación, e.getMessage(), e));
+            MensajesError.agregarError(path.toString(), operación, e.getMessage(), e);
             return true;
         }
         return false;
@@ -70,6 +68,24 @@ public class Validador {
     public static boolean esDirectorio(String ruta) {
         Path path = Path.of(ruta);
         return Files.isDirectory(path);
+    }
+
+    public static boolean sobrescribir(Path path, Operaciones operación) {
+        if (Files.exists(path)) {
+            String elección = Consola.consolaSobrescribir(operación);
+
+            switch (elección) {
+                case "s":
+                    return true;
+                case "n":
+                    return false;
+                case "sp":
+                    operarPorDefecto = true;
+                case "np":
+                    operarPorDefecto = true;
+            }
+        }
+        return false;
     }
 
     public static boolean probar(String ruta) {

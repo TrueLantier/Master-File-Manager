@@ -1,5 +1,6 @@
 package nio.guardarnombres;
 
+import nio.Operaciones;
 import nio.manejoerrores.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,7 +23,7 @@ public class NioGuardarNombres {
     private static List<String> nombresArchivos;
 
     public static void guardarNombres(String rutaNombres) throws IOException {
-        if (Validador.validar(rutaNombres, OPERACIÓN)) {
+        if (Validador.validar(rutaNombres, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
 
@@ -32,7 +33,7 @@ public class NioGuardarNombres {
     }
 
     public static void guardarNombres(String rutaNombres, boolean objetivo, String nombre) throws IOException {
-        if (Validador.validar(rutaNombres, OPERACIÓN)) {
+        if (Validador.validar(rutaNombres, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
         Path path = Path.of(rutaNombres);
@@ -41,10 +42,10 @@ public class NioGuardarNombres {
     }
 
     public static void guardarNombres(String rutaNombres, String rutaGuardado) throws IOException{
-        if (Validador.validar(rutaNombres, OPERACIÓN)) {
+        if (Validador.validar(rutaNombres, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
-        if (Validador.validar(rutaGuardado, OPERACIÓN)) {
+        if (Validador.validar(rutaGuardado, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
         rutaDeGuardado = rutaGuardado;
@@ -54,10 +55,10 @@ public class NioGuardarNombres {
     }
 
     public static void guardarNombres(String rutaNombres, String rutaGuardado, boolean objetivo, String nombre) throws IOException{
-        if (Validador.validar(rutaNombres, OPERACIÓN)) {
+        if (Validador.validar(rutaNombres, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
-        if (Validador.validar(rutaGuardado, OPERACIÓN)) {
+        if (Validador.validar(rutaGuardado, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
         rutaDeGuardado = rutaGuardado;
@@ -67,7 +68,7 @@ public class NioGuardarNombres {
     }
 
     private static void copiarNombresArchivos(Path path) throws IOException{ // Copiar todo.
-        if (Validador.estáVacío(path, OPERACIÓN)) {
+        if (Validador.estáVacío(path, Operaciones.GUARDAR_NOMBRES)) {
             System.out.println("hola");
             return;
         }
@@ -87,7 +88,7 @@ public class NioGuardarNombres {
     }
 
     private static void copiarNombresArchivos(Path path, String nombreObjetivo) throws IOException{
-        if (Validador.estáVacío(path, OPERACIÓN)) {
+        if (Validador.estáVacío(path, Operaciones.GUARDAR_NOMBRES)) {
             return;
         }
 

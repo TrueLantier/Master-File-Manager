@@ -1,5 +1,6 @@
 package main;
 
+import nio.NioEliminar.NioEliminar;
 import nio.crear.NioCrearArchivo;
 import nio.crear.NioCrearCarpeta;
 import nio.guardarnombres.NioGuardarNombres;
@@ -10,11 +11,11 @@ import java.io.IOException;
 public class Main {
     static void main(String[] args) throws IOException {
         String ruta1 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados";
-        String ruta2 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/11";
+        String ruta2 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/22/1";
         String ruta3 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio";
         String[] nombres = { "1", "2", "3"};
 
-        NioGuardarNombres.guardarNombres(ruta2);
-        System.out.println(MensajesError.errores.getFirst().toString());
+
+        MensajesError.mostrarErrores();
     }
 }
