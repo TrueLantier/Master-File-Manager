@@ -8,5 +8,6 @@ public enum Operaciones {
     COPIAR,
     MOVER,
     RENOMBRAR,
-    BUSCAR_DUPLICADOS
+    BUSCAR_DUPLICADOS,
+    CARPETA_VACÍA
 }

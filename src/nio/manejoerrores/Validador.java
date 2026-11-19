@@ -45,12 +45,7 @@ public class Validador {
         return Files.isWritable(path);
     }
 
-    /**
-     * Validadores de operaciones
-     * FileAlreadyExistsException
-     * NoSuchElementException
-     */
-
+    // Uso para NioGuardarNombres
     public static boolean estáVacío(Path path, Operaciones operación) throws IOException {
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(path)){
             if (!elementos.iterator().hasNext()) {
@@ -63,9 +58,16 @@ public class Validador {
         return false;
     }
 
-    public static boolean esDirectorio(String ruta) {
+    public static boolean estáVacío(String ruta) { // Se supone que ya se hizo comprobaciones.
         Path path = Path.of(ruta);
-        return Files.isDirectory(path);
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(path)){
+            if (!elementos.iterator().hasNext()) {
+                return true;
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(path.toString(), Operaciones.CARPETA_VACÍA, e.getMessage(), e);
+        }
+        return false;
     }
 
     public static boolean sobrescribir(Path path, Operaciones operación) {

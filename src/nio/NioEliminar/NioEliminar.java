@@ -30,7 +30,6 @@ public class NioEliminar {
         }
 
         Path path = Path.of(rutaEliminar);
-        System.out.println(path);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
             for (Path elemento: stream) {
                 if (Files.isDirectory(elemento)) {
@@ -55,9 +54,13 @@ public class NioEliminar {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
             for (Path elemento: stream) {
                 if (Files.isDirectory(elemento)) {
-                    eliminarNombre(elemento.getRoot().toString(), nombre);
+                    eliminarNombre(elemento.toAbsolutePath().toString(), nombre);
                 }
+
                 if (elemento.getFileName().toString().contains(nombre)) {
+                    if (Files.isDirectory(elemento)) {
+                        eliminarTodo(elemento.toAbsolutePath().toString());
+                    }
                     Files.delete(elemento);
                 }
             }

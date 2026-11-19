@@ -1,6 +1,7 @@
 package main;
 
 import nio.NioEliminar.NioEliminar;
+import nio.copiarmover.NioCopiar;
 import nio.crear.NioCrearArchivo;
 import nio.crear.NioCrearCarpeta;
 import nio.guardarnombres.NioGuardarNombres;
@@ -13,10 +14,14 @@ public class Main {
         String ruta1 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados";
         String ruta2 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/22";
         String ruta3 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio";
+        String ruta4 = "/home/angel/Documentos/ESCUELA/FASE 2/Master File Manager/src/laboratorio/salados/33";
         String[] nombres = { "1", "2", "3"};
 
+        //NioCrearCarpeta.crearCarpeta(ruta1, "Java", 4);
+        //NioCrearArchivo.crearArchivo(ruta1, "Java", 4);
+        //NioEliminar.eliminarTodo(ruta1 + "/" + 33);
+        NioCopiar.copiarTodo(ruta1 + "/" + 1, ruta1 + "/" + 33);
 
-        NioEliminar.eliminarTodo(ruta2);
         MensajesError.mostrarErrores();
     }
 }
