@@ -20,7 +20,7 @@ public class Main {
         //NioCrearCarpeta.crearCarpeta(ruta1, "Java", 4);
         //NioCrearArchivo.crearArchivo(ruta1, "Java", 4);
         //NioEliminar.eliminarTodo(ruta1 + "/" + 33);
-        NioCopiar.copiarTodo(ruta1 + "/" + 1, ruta1 + "/" + 33);
+        NioCopiar.copiarTodo(ruta1 + "/" + 22, ruta1 + "/" + 33);
 
         MensajesError.mostrarErrores();
     }

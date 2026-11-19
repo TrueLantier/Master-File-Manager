@@ -1,5 +1,6 @@
 package nio.copiarmover;
 
+import nio.NioEliminar.NioEliminar;
 import nio.Operaciones;
 import nio.manejoerrores.MensajesError;
 import nio.manejoerrores.Validador;
@@ -28,8 +29,8 @@ public class NioCopiar {
         try {
             if (Files.exists(destinoCompleto)) {
                 if (Validador.sobrescribir(destinoCompleto, Operaciones.COPIAR)) {
-                    Files.copy(fuente, destinoCompleto, StandardCopyOption.REPLACE_EXISTING,
-                            StandardCopyOption.COPY_ATTRIBUTES);
+                    NioEliminar.eliminarElemento(destinoCompleto.toString());
+                    Files.copy(fuente, destinoCompleto, StandardCopyOption.COPY_ATTRIBUTES);
                     return;
                 } else {
                     return;
