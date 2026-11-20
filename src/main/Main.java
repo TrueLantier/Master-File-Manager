@@ -8,6 +8,9 @@ import nio.guardarnombres.NioGuardarNombres;
 import nio.manejoerrores.MensajesError;
 import nio.manejoerrores.RegistroErrores;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 public class Main {
@@ -22,7 +25,9 @@ public class Main {
         //NioCrearArchivo.crearArchivo(ruta1, "Java", 4);
         //NioEliminar.eliminarTodo(ruta1 + "/" + 33);
         //NioCopiar.copiarTodo(ruta1 + "/" + 22, ruta1 + "/" + 33);
-        NioCopiar.copiarContenido(ruta1 + "/" + 22, ruta1 + "/" + 1, 3);
+        //NioCopiar.copiarContenido(ruta1 + "/" + 22, ruta1 + "/" + 1, 3);
+        //NioEliminar.eliminarNombre(ruta1 + "/" + 1, "a");
+        //NioCopiar.copiarNombres(ruta1 + "/" + 22, ruta1 + "/" + 1, "carpeta");
 
         MensajesError.mostrarErrores();
     }

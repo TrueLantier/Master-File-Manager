@@ -119,7 +119,18 @@ public class NioCopiar {
             return;
         }
 
-
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))) {
+            uno: for (Path elemento: elementos) {
+                for (String nombre: nombres) {
+                    if (elemento.toString().contains(nombre)) {
+                        copiarTodo(elemento.toString(), rutaDestino);
+                        continue uno;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.COPIAR, e.getMessage(), e);
+        }
     }
 
     /**
