@@ -15,3 +15,4 @@ Se podría hacer un record para las operaciones exitosas, pero de momento no.
 Se podría agregar argumentos de longitud variable a varios métodos, como eliminarNnombre() de la clase NioEliminar.
 Posible mejora: cuando listo los elementos de un directorio para cualquier operación, separar de alguna manera
 en dos listas los subdirectorios y los archivos. Esto es útil en ocasiones.
+Las clases NioCopiar y NioMover podrían simplificarse y evitar repetir código ya que repiten patrones similares.

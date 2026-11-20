@@ -103,7 +103,6 @@ public class NioCopiar {
             for (String elemento: listaElementos) {
                 if (contador==cantidad) { break;}
                 copiarTodo(elemento, rutaDestino);
-
                 ++contador;
             }
         } catch (Exception e) {

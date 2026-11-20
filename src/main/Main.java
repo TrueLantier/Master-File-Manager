@@ -1,17 +1,10 @@
 package main;
 
-import nio.NioEliminar.NioEliminar;
-import nio.copiarmover.NioCopiar;
-import nio.crear.NioCrearArchivo;
-import nio.crear.NioCrearCarpeta;
-import nio.guardarnombres.NioGuardarNombres;
+import nio.*;
+import nio.copiarmover.NioMover;
 import nio.manejoerrores.MensajesError;
-import nio.manejoerrores.RegistroErrores;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
+
 
 public class Main {
     static void main(String[] args) throws IOException {
@@ -28,6 +21,11 @@ public class Main {
         //NioCopiar.copiarContenido(ruta1 + "/" + 22, ruta1 + "/" + 1, 3);
         //NioEliminar.eliminarNombre(ruta1 + "/" + 1, "a");
         //NioCopiar.copiarNombres(ruta1 + "/" + 22, ruta1 + "/" + 1, "carpeta");
+
+        //NioMover.moverElemento(ruta1 + "/" + "archivo.txt", ruta1 + "/" + 1);
+        //NioMover.moverElemento(ruta1 + "/33/22", ruta1 + "");
+        //NioMover.moverContenido(ruta1 + "/33", ruta1 + "/22", 7);
+        NioMover.moverNombres(ruta1 + "/22", ruta1 + "/33", "Java");
 
         MensajesError.mostrarErrores();
     }
