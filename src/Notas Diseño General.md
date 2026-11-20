@@ -13,7 +13,7 @@ Clase Controlador: Elige una operación: copiar archivos, eliminar, etc. Selecci
 
 FASE 2:
 5- Renombrar archivos, varios a la misma vez y con condiciones.
-*6- Mover archivos de carpeta, varios a la misma vez y con condiciones.
+6- Mover archivos de carpeta.
 8- Encontrar archivos duplicados(nombre, tamaño, similitudes en ambos aspectos).
 10- Ver listas y detalles de archivos, hacer comparaciones, ordenamientos, filtrado de búsquedas.
 

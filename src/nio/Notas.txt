@@ -12,3 +12,4 @@ estáticos.
 Ver ese WatchService
 Enum en NioGuardarNombres
 Se podría hacer un record para las operaciones exitosas, pero de momento no.
+Se podría agregar argumentos de longitud variable a varios métodos, como eliminarNnombre() de la clase NioEliminar

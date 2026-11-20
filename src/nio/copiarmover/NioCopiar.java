@@ -4,11 +4,14 @@ import nio.NioEliminar.NioEliminar;
 import nio.Operaciones;
 import nio.manejoerrores.MensajesError;
 import nio.manejoerrores.Validador;
-
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class NioCopiar {
 
@@ -61,7 +64,6 @@ public class NioCopiar {
         Path destino = Path.of(rutaDestino);
         Path destinoCompleto = destino.resolve(fuente.getFileName());
         copiarElemento(rutaElementos, rutaDestino);
-
         if (Files.isRegularFile(fuente) || Validador.estáVacío(rutaElementos)) {
             return;
         }
@@ -75,6 +77,49 @@ public class NioCopiar {
         } catch (Exception e) {
             MensajesError.agregarError(rutaElementos, Operaciones.COPIAR, e.getMessage(), e);
         }
+    }
+
+    // Copia por orden alfabético. Ejemplo: los 10 primeros.
+    public static void copiarContenido(String rutaElementos, String rutaDestino, int cantidad) {
+        if (Validador.validar(rutaElementos, Operaciones.COPIAR)) {
+            return;
+        }
+        if (rutaIncorrecta(rutaElementos, rutaDestino)) {
+            return;
+        }
+
+        int contador = 0;
+        List<String> listaElementos = new ArrayList<>();
+        Locale locale = Locale.getDefault();
+        Collator collator = Collator.getInstance(locale);
+
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))) {
+            for (Path elemento: elementos) {
+                listaElementos.add(elemento.toString());
+            }
+            collator.setStrength(Collator.TERTIARY);
+            listaElementos.sort(collator);
+
+            for (String elemento: listaElementos) {
+                if (contador==cantidad) { break;}
+                copiarTodo(elemento, rutaDestino);
+
+                ++contador;
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.COPIAR, e.getMessage(), e);
+        }
+    }
+
+    public static void copiarNombres(String rutaElementos, String rutaDestino, String ... nombres) {
+        if (Validador.validar(rutaElementos, Operaciones.COPIAR)) {
+            return;
+        }
+        if (rutaIncorrecta(rutaElementos, rutaDestino)) {
+            return;
+        }
+
+
     }
 
     /**
