@@ -70,7 +70,7 @@ public class NioCopiar {
 
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(fuente)) {
             for (Path elemento: elementos) {
-                String rutaIndividual = elemento.toAbsolutePath().toString();
+                String rutaIndividual = elemento.toString();
                 String rutaIndividualFinal = destinoCompleto.toString();
                 copiarTodo(rutaIndividual, rutaIndividualFinal);
             }
