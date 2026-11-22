@@ -2,18 +2,17 @@ package nio.renombrar;
 
 /*
   Renombrar varios archivos con condiciones.
-  Esta clase no soporta archivos ocultos Linux ".archivo" ni doble extensión: "algo.txt.xz".
+  Esta clase no soporta doble extensión: "algo.txt.xz".
  */
 
 import nio.Operaciones;
 import nio.manejoerrores.*;
-
-import java.lang.ref.PhantomReference;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class NioRenombrar {
+    private static final int NÚMERO_PUNTOS = 2;
 
     private static void renombrar(Path fuente, Path destino) {
         try {
@@ -37,6 +36,10 @@ public class NioRenombrar {
         if (Validador.validar(rutaElemento, Operaciones.RENOMBRAR)) {
             return;
         }
+        if (rutaElemento.contains(".")) {
+            renombrarConSufijo(rutaElemento, nuevoNombre);
+            return;
+        }
 
         Path fuente = Path.of(rutaElemento);
         Path padre = fuente.getParent();
@@ -45,17 +48,12 @@ public class NioRenombrar {
     }
 
     // Sufijo es la extensión: ".algo".
-    public static void renombrarConSufijo(String rutaElemento, String nuevoNombre) {
-        if (Validador.validar(rutaElemento, Operaciones.RENOMBRAR)) {
-            return;
-        }
-
-        if (!rutaElemento.contains(".")) {
-            renombrarElemento(rutaElemento, nuevoNombre);
-            return;
-        }
-
+    private static void renombrarConSufijo(String rutaElemento, String nuevoNombre) {
         Path fuente = Path.of(rutaElemento);
+        if (tienePuntos(fuente)) {
+            return;
+        }
+
         Path padre = fuente.getParent();
         String nombre = nombreNuevoConExtensión(fuente, nuevoNombre);
         Path destino = padre.resolve(nombre);
@@ -134,9 +132,19 @@ public class NioRenombrar {
         return nuevoNombre + extensión;
     }
 
-    private static boolean tienePunto(Path path) {
+    private static boolean tienePuntos(Path path) {
         String nombreElemento = path.getFileName().toString();
-
+        int contador = 0;
+        for (int i = 0; i < nombreElemento.length(); i++) {
+            if (nombreElemento.charAt(i) == '.') {
+                ++contador;
+            }
+        }
+        if (contador >= NÚMERO_PUNTOS) {
+            MensajesError.agregarError(path.toString(), Operaciones.RENOMBRAR,
+                    "El archivo tiene más de una extensión.", new IllegalArgumentException());
+            return true;
+        }
 
         return false;
     }

@@ -31,11 +31,12 @@ public class Main {
         //NioMover.moverContenido(ruta1 + "/33", ruta1, 5);
         //NioMover.moverNombres(ruta1 + "/22", ruta1 + "/33", "Java");
 
-        //NioRenombrar.renombrarElemento(ruta1 + "/archivo.txt", "ARCHIVO.md");
+        //NioRenombrar.renombrarElemento(ruta1 + "/archivo 0.txt", "ARCHIVO 0.md.");
+
         //NioRenombrar.renombrarConSufijo(ruta1+"/ARCHIVO.txt", "archivo 0");
         //NioRenombrar.agregarPrefijo(ruta1 + "/archivo 0.txt", "ARCHIVO ");
         //NioRenombrar.agregarSufijo(ruta1 + "/Java 0.txt", " Java");
-        NioRenombrar.quitarCadena(ruta1 + "/ARCHIVO archivo 0.txt", "ARCHIVO ");
+        //NioRenombrar.quitarCadena(ruta1 + "/ARCHIVO archivo 0.txt", "ARCHIVO ");
 
 
         MensajesError.mostrarErrores();
