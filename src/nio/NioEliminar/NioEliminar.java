@@ -70,7 +70,7 @@ public class NioEliminar {
         }
     }
 
-    public static void eliminarVariosNombres(String rutaEliminar, String[] nombres) {
+    public static void eliminarVariosNombres(String rutaEliminar, String ... nombres) {
         for (String nombre: nombres) {
             eliminarNombre(rutaEliminar, nombre);
         }

@@ -2,12 +2,15 @@ package main;
 
 import nio.*;
 import nio.copiarmover.NioMover;
+import nio.crear.NioCrearArchivo;
 import nio.manejoerrores.MensajesError;
 import nio.renombrar.NioRenombrar;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Main {
@@ -19,7 +22,7 @@ public class Main {
         String[] nombres = { "1", "2", "3"};
 
         //NioCrearCarpeta.crearCarpeta(ruta1, "Java", 4);
-        //NioCrearArchivo.crearArchivo(ruta1, "Java", 4);
+        //NioCrearArchivo.crearArchivo(ruta1 + "/Java 1", "angel123-123 eduardo", 4);
         //NioEliminar.eliminarTodo(ruta1 + "/" + 33);
         //NioCopiar.copiarTodo(ruta1 + "/" + 22, ruta1 + "/" + 33);
         //NioCopiar.copiarContenido(ruta1 + "/" + 22, ruta1 + "/" + 1, 3);
@@ -36,8 +39,9 @@ public class Main {
         //NioRenombrar.renombrarConSufijo(ruta1+"/ARCHIVO.txt", "archivo 0");
         //NioRenombrar.agregarPrefijo(ruta1 + "/archivo 0.txt", "ARCHIVO ");
         //NioRenombrar.agregarSufijo(ruta1 + "/Java 0.txt", " Java");
-        //NioRenombrar.quitarCadena(ruta1 + "/ARCHIVO archivo 0.txt", "ARCHIVO ");
-
+        //NioRenombrar.agregarTodoSufijo(ruta1 + "/33", " 99");
+        //NioRenombrar.quitarTodoCadena(ruta1 + "/33", " 99");
+        NioRenombrar.renombrarMangas("/home/angel/Señoritas sabrosas x4");
 
         MensajesError.mostrarErrores();
     }

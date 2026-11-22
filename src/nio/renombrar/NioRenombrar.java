@@ -7,9 +7,12 @@ package nio.renombrar;
 
 import nio.Operaciones;
 import nio.manejoerrores.*;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NioRenombrar {
     private static final int NÚMERO_PUNTOS = 2;
@@ -58,6 +61,64 @@ public class NioRenombrar {
         String nombre = nombreNuevoConExtensión(fuente, nuevoNombre);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
+    }
+
+    // Se asume que todos los mangas estarán en una carpeta con su nombre.
+    public static void renombrarMangas(String rutaElementos) {
+        if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
+            return;
+        }
+
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
+            for (Path elemento: elementos) {
+                String nombre = construirNombreManga(elemento);
+                renombrarElemento(elemento.toString(), nombre);
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.RENOMBRAR, e.getMessage(), e);
+        }
+    }
+
+    public static void agregarTodoPrefijo(String rutaElementos, String prefijo) {
+        if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
+            return;
+        }
+
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
+            for (Path elemento: elementos) {
+                agregarPrefijo(elemento.toString(), prefijo);
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.RENOMBRAR, e.getMessage(), e);
+        }
+    }
+
+    public static void agregarTodoSufijo(String rutaElementos, String sufijo) {
+        if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
+            return;
+        }
+
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
+            for (Path elemento: elementos) {
+                agregarSufijo(elemento.toString(), sufijo);
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.RENOMBRAR, e.getMessage(), e);
+        }
+    }
+
+    public static void quitarTodoCadena(String rutaElementos, String cadena) {
+        if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
+            return;
+        }
+
+        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
+            for (Path elemento: elementos) {
+                quitarCadena(elemento.toString(), cadena);
+            }
+        } catch (Exception e) {
+            MensajesError.agregarError(rutaElementos, Operaciones.RENOMBRAR, e.getMessage(), e);
+        }
     }
 
     public static void agregarPrefijo(String rutaElemento, String prefijo) {
@@ -130,6 +191,21 @@ public class NioRenombrar {
         String extensión = nombreOriginal.substring(posiciónPunto);
 
         return nuevoNombre + extensión;
+    }
+
+    private static String construirNombreManga(Path elemento) {
+        String nombreManga = elemento.getParent().getFileName().toString();
+        String nombreElemento = elemento.getFileName().toString();
+        Pattern patrón = Pattern.compile("\\d+-\\d+");
+        Matcher matcher = patrón.matcher(nombreElemento);
+        String parte = "";
+
+        if (matcher.find()) {
+            parte = matcher.group();
+            System.out.println(parte);
+        }
+
+        return nombreManga + " " + parte;
     }
 
     private static boolean tienePuntos(Path path) {
