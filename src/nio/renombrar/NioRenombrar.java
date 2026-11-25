@@ -67,7 +67,7 @@ public class NioRenombrar {
      * Se asume que todos los mangas estarán en una carpeta con su nombre.
      * @param rutaElementos
      */
-    public static void renombrarMangas(String rutaElementos) {
+    public static void renombrarMangas(String rutaElementos, String ... palabrasClave) {
         if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
             return;
         }

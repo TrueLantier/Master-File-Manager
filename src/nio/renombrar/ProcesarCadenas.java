@@ -5,6 +5,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProcesarCadenas {
+    private static final Pattern PATRON = Pattern.compile(
+            "(\\d+(?:\\.\\d+)?)(?:\\s*-\\s*(\\d+(?:\\.\\d+)?))?"
+    );
+
     public static String nombreNuevoSinCadena(Path fuente, String cadena) {
         String nombreOriginal = fuente.getFileName().toString();
         return nombreOriginal.replace(cadena, "");
@@ -42,15 +46,29 @@ public class ProcesarCadenas {
     public static String construirNombreManga(Path elemento) {
         String nombreManga = elemento.getParent().getFileName().toString();
         String nombreElemento = elemento.getFileName().toString();
-        Pattern patrón = Pattern.compile("\\d+-\\d+");
-        Matcher matcher = patrón.matcher(nombreElemento);
-        String parte = "";
+        Matcher matcher = PATRON.matcher(nombreElemento);
+        String númeroUno = "";
+        String númeroDos = "";
 
-        if (matcher.find()) {
-            parte = matcher.group();
-            System.out.println(parte);
+        while (matcher.find()) {
+            númeroUno = matcher.group(1);
+            númeroDos = matcher.group(2);
+
+            if (númeroDos != null) {
+                return númeroUno + "-" + númeroDos + " " + nombreManga;
+            } else {
+                return númeroUno + " " + nombreManga;
+            }
         }
 
-        return nombreManga + " " + parte;
+
+//        if (matcher.find()) {
+//            parte = matcher.group();
+//            System.out.println(parte);
+//        }
+
+        return númeroUno+ "-" +númeroDos + " " + nombreManga;
     }
+
+
 }
