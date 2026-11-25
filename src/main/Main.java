@@ -22,7 +22,7 @@ public class Main {
         String[] nombres = { "1", "2", "3"};
 
         //NioCrearCarpeta.crearCarpeta(ruta1, "Java", 4);
-        //NioCrearArchivo.crearArchivo(ruta1 + "/Java 1", "angel123-123 eduardo", 4);
+        NioCrearArchivo.crearArchivo(ruta1 + "/Java 1", "archivos", 5);
         //NioEliminar.eliminarTodo(ruta1 + "/" + 33);
         //NioCopiar.copiarTodo(ruta1 + "/" + 22, ruta1 + "/" + 33);
         //NioCopiar.copiarContenido(ruta1 + "/" + 22, ruta1 + "/" + 1, 3);
@@ -41,7 +41,7 @@ public class Main {
         //NioRenombrar.agregarSufijo(ruta1 + "/Java 0.txt", " Java");
         //NioRenombrar.agregarTodoSufijo(ruta1 + "/33", " 99");
         //NioRenombrar.quitarTodoCadena(ruta1 + "/33", " 99");
-        NioRenombrar.renombrarMangas("/home/angel/Señoritas sabrosas x4");
+        //NioRenombrar.renombrarMangas(ruta1 + "/Java 1");
 
         MensajesError.mostrarErrores();
     }

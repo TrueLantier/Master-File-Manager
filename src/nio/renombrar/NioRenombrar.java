@@ -58,12 +58,15 @@ public class NioRenombrar {
         }
 
         Path padre = fuente.getParent();
-        String nombre = nombreNuevoConExtensión(fuente, nuevoNombre);
+        String nombre = ProcesarCadenas.nombreNuevoConExtensión(fuente, nuevoNombre);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
     }
 
-    // Se asume que todos los mangas estarán en una carpeta con su nombre.
+    /**
+     * Se asume que todos los mangas estarán en una carpeta con su nombre.
+     * @param rutaElementos
+     */
     public static void renombrarMangas(String rutaElementos) {
         if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
             return;
@@ -71,7 +74,7 @@ public class NioRenombrar {
 
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
             for (Path elemento: elementos) {
-                String nombre = construirNombreManga(elemento);
+                String nombre = ProcesarCadenas.construirNombreManga(elemento);
                 renombrarElemento(elemento.toString(), nombre);
             }
         } catch (Exception e) {
@@ -128,7 +131,7 @@ public class NioRenombrar {
 
         Path fuente = Path.of(rutaElemento);
         Path padre = fuente.getParent();
-        String nombre = nombreNuevoConPrefijo(fuente, prefijo);
+        String nombre = ProcesarCadenas.nombreNuevoConPrefijo(fuente, prefijo);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
     }
@@ -140,7 +143,7 @@ public class NioRenombrar {
 
         Path fuente = Path.of(rutaElemento);
         Path padre = fuente.getParent();
-        String nombre = nombreNuevoConSufijo(fuente, sufijo);
+        String nombre = ProcesarCadenas.nombreNuevoConSufijo(fuente, sufijo);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
     }
@@ -157,55 +160,9 @@ public class NioRenombrar {
 
         Path fuente = Path.of(rutaElemento);
         Path padre = fuente.getParent();
-        String nombre = nombreNuevoSinCadena(fuente, cadena);
+        String nombre = ProcesarCadenas.nombreNuevoSinCadena(fuente, cadena);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
-    }
-
-    private static String nombreNuevoSinCadena(Path fuente, String cadena) {
-        String nombreOriginal = fuente.getFileName().toString();
-        return nombreOriginal.replace(cadena, "");
-    }
-
-    private static String nombreNuevoConPrefijo(Path fuente, String prefijo) {
-        String nombreOriginal = fuente.getFileName().toString();
-        return prefijo + nombreOriginal;
-    }
-
-    private static String nombreNuevoConSufijo(Path fuente, String sufijo) {
-        String nombreOriginal = fuente.getFileName().toString();
-        if (!nombreOriginal.contains(".")) {
-            return nombreOriginal + sufijo;
-        }
-
-        int posiciónPunto = nombreOriginal.lastIndexOf(".");
-        String nombreSolo = nombreOriginal.substring(0, posiciónPunto);
-        String extensión = nombreOriginal.substring(posiciónPunto);
-
-        return nombreSolo + sufijo + extensión;
-    }
-
-    private static String nombreNuevoConExtensión(Path fuente, String nuevoNombre) {
-        String nombreOriginal = fuente.getFileName().toString();
-        int posiciónPunto = nombreOriginal.lastIndexOf(".");
-        String extensión = nombreOriginal.substring(posiciónPunto);
-
-        return nuevoNombre + extensión;
-    }
-
-    private static String construirNombreManga(Path elemento) {
-        String nombreManga = elemento.getParent().getFileName().toString();
-        String nombreElemento = elemento.getFileName().toString();
-        Pattern patrón = Pattern.compile("\\d+-\\d+");
-        Matcher matcher = patrón.matcher(nombreElemento);
-        String parte = "";
-
-        if (matcher.find()) {
-            parte = matcher.group();
-            System.out.println(parte);
-        }
-
-        return nombreManga + " " + parte;
     }
 
     private static boolean tienePuntos(Path path) {

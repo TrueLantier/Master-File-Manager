@@ -94,8 +94,4 @@ public class Validador {
         };
 
     }
-
-    public static boolean probar(String ruta) {
-        return true;
-    }
 }
