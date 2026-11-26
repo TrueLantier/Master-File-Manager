@@ -74,6 +74,9 @@ public class NioRenombrar {
 
         try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
             for (Path elemento: elementos) {
+                if (palabrasClave.length > 0) {
+                    ProcesarCadenas.agregarPalabrasClave(palabrasClave);
+                }
                 String nombre = ProcesarCadenas.construirNombreManga(elemento);
                 renombrarElemento(elemento.toString(), nombre);
             }
