@@ -2,34 +2,38 @@ package nio.renombrar;
 
 /*
   Renombrar varios archivos con condiciones.
-  Esta clase no soporta doble extensión: "algo.txt.xz".
+  Esta clase no soporta doble extensión: "algo.tar.xz".
  */
 
 import nio.Operaciones;
 import nio.manejoerrores.*;
+import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NioRenombrar {
-    private static final int NÚMERO_PUNTOS = 2;
 
     private static void renombrar(Path fuente, Path destino) {
+//        if (fuente.equals(destino)) {
+//            return;
+//        }
         try {
             if (Files.exists(destino)) {
                 if (Validador.sobrescribir(destino, Operaciones.RENOMBRAR)) {
                     Files.move(fuente, destino,
-                            StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+                            StandardCopyOption.REPLACE_EXISTING);
                     return;
                 } else {
                     return;
                 }
             }
 
-            Files.move(fuente, destino, StandardCopyOption.ATOMIC_MOVE);
+            Files.move(fuente, destino);
         } catch (Exception e) {
             MensajesError.agregarError(fuente.toString(), Operaciones.RENOMBRAR, e.getMessage(), e);
         }
@@ -39,28 +43,9 @@ public class NioRenombrar {
         if (Validador.validar(rutaElemento, Operaciones.RENOMBRAR)) {
             return;
         }
-        if (rutaElemento.contains(".")) {
-            renombrarConSufijo(rutaElemento, nuevoNombre);
-            return;
-        }
-
         Path fuente = Path.of(rutaElemento);
-        Path padre = fuente.getParent();
-        Path destino = padre.resolve(nuevoNombre);
-        renombrar(fuente, destino);
-    }
-
-    // Sufijo es la extensión: ".algo".
-    private static void renombrarConSufijo(String rutaElemento, String nuevoNombre) {
-        Path fuente = Path.of(rutaElemento);
-        if (tienePuntos(fuente)) {
-            return;
-        }
-
-        Path padre = fuente.getParent();
         String nombre = ProcesarCadenas.nombreNuevoConExtensión(fuente, nuevoNombre);
-        Path destino = padre.resolve(nombre);
-        renombrar(fuente, destino);
+        renombrar(fuente, fuente.resolveSibling(nombre));
     }
 
     /**
@@ -71,12 +56,12 @@ public class NioRenombrar {
         if (Validador.validar(rutaElementos, Operaciones.RENOMBRAR)) {
             return;
         }
+        if (palabrasClave.length > 0) {
+            ProcesarCadenas.agregarPalabrasClave(palabrasClave);
+        }
 
-        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
-            for (Path elemento: elementos) {
-                if (palabrasClave.length > 0) {
-                    ProcesarCadenas.agregarPalabrasClave(palabrasClave);
-                }
+        try {
+            for (Path elemento : listar(rutaElementos)) {
                 String nombre = ProcesarCadenas.construirNombreManga(elemento);
                 renombrarElemento(elemento.toString(), nombre);
             }
@@ -90,8 +75,8 @@ public class NioRenombrar {
             return;
         }
 
-        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
-            for (Path elemento: elementos) {
+        try {
+            for (Path elemento : listar(rutaElementos)) {
                 agregarPrefijo(elemento.toString(), prefijo);
             }
         } catch (Exception e) {
@@ -104,8 +89,8 @@ public class NioRenombrar {
             return;
         }
 
-        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
-            for (Path elemento: elementos) {
+        try {
+            for (Path elemento : listar(rutaElementos)) {
                 agregarSufijo(elemento.toString(), sufijo);
             }
         } catch (Exception e) {
@@ -118,8 +103,8 @@ public class NioRenombrar {
             return;
         }
 
-        try (DirectoryStream<Path> elementos = Files.newDirectoryStream(Path.of(rutaElementos))){
-            for (Path elemento: elementos) {
+        try {
+            for (Path elemento : listar(rutaElementos)) {
                 quitarCadena(elemento.toString(), cadena);
             }
         } catch (Exception e) {
@@ -155,33 +140,28 @@ public class NioRenombrar {
         if (Validador.validar(rutaElemento, Operaciones.RENOMBRAR)) {
             return;
         }
-        if (!rutaElemento.contains(cadena)) {
+        Path fuente = Path.of(rutaElemento);
+        String nombreOriginal = fuente.getFileName().toString();
+        if (!nombreOriginal.contains(cadena)) {
             MensajesError.agregarError(rutaElemento, Operaciones.RENOMBRAR,
                     "La ruta no contiene la cadena que desea eliminar.", new IllegalArgumentException());
             return;
         }
 
-        Path fuente = Path.of(rutaElemento);
         Path padre = fuente.getParent();
         String nombre = ProcesarCadenas.nombreNuevoSinCadena(fuente, cadena);
         Path destino = padre.resolve(nombre);
         renombrar(fuente, destino);
     }
 
-    private static boolean tienePuntos(Path path) {
-        String nombreElemento = path.getFileName().toString();
-        int contador = 0;
-        for (int i = 0; i < nombreElemento.length(); i++) {
-            if (nombreElemento.charAt(i) == '.') {
-                ++contador;
+    private static List<Path> listar(String rutaElementos) throws IOException {
+        List<Path> elementos = new ArrayList<>();
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(Path.of(rutaElementos))) {
+            for (Path p : ds) {
+                elementos.add(p);
             }
         }
-        if (contador >= NÚMERO_PUNTOS) {
-            MensajesError.agregarError(path.toString(), Operaciones.RENOMBRAR,
-                    "El archivo tiene más de una extensión.", new IllegalArgumentException());
-            return true;
-        }
-
-        return false;
+        Collections.sort(elementos);   // Orden determinista.
+        return elementos;
     }
 }

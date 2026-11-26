@@ -1,5 +1,9 @@
 package nio.renombrar;
 
+import nio.Operaciones;
+import nio.manejoerrores.MensajesError;
+import nio.manejoerrores.RegistroErrores;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,12 +13,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProcesarCadenas {
+    private static int num = 1;
     private static final Pattern PATRON = Pattern.compile(
             "(\\d+(?:\\.\\d+)?)(?:\\s*-\\s*(\\d+(?:\\.\\d+)?))?"
     );
 
     private static List<String> palabrasClave = new ArrayList<>(
-            Arrays.asList("Final", "Extra", "Epílogo", "Especial"));
+            Arrays.asList("Final", "Extra", "Especial", "Epílogo"));
 
     public static void agregarPalabrasClave(String[] matrizClave) {
         Collections.addAll(palabrasClave, matrizClave); // Más limpia y eficiente.
@@ -33,24 +38,12 @@ public class ProcesarCadenas {
     }
 
     public static String nombreNuevoConSufijo(Path fuente, String sufijo) {
-        String nombreOriginal = fuente.getFileName().toString();
-        if (!nombreOriginal.contains(".")) {
-            return nombreOriginal + sufijo;
-        }
-
-        int posiciónPunto = nombreOriginal.lastIndexOf(".");
-        String nombreSolo = nombreOriginal.substring(0, posiciónPunto);
-        String extensión = nombreOriginal.substring(posiciónPunto);
-
-        return nombreSolo + sufijo + extensión;
+        Partes p = Partes.de(fuente);
+        return p.base() + sufijo + p.extension();
     }
 
     public static String nombreNuevoConExtensión(Path fuente, String nuevoNombre) {
-        String nombreOriginal = fuente.getFileName().toString();
-        int posiciónPunto = nombreOriginal.lastIndexOf(".");
-        String extensión = nombreOriginal.substring(posiciónPunto);
-
-        return nuevoNombre + extensión;
+        return nuevoNombre + Partes.de(fuente).extension();
     }
 
     /**
@@ -58,15 +51,23 @@ public class ProcesarCadenas {
      */
     public static String construirNombreManga(Path elemento) {
         String nombreManga = elemento.getParent().getFileName().toString();
-        String nombreElemento = elemento.getFileName().toString();
+        String nombreElemento = Partes.de(elemento).base();
         Matcher matcher = PATRON.matcher(nombreElemento);
         String númeroUno = "";
         String númeroDos = "";
+        String númeroTres = "";
         String clave = encontrarPalabraClave(nombreElemento);
 
         while (matcher.find()) {
             númeroUno = matcher.group(1);
             númeroDos = matcher.group(2);
+            númeroTres = matcher.group(3);
+
+            if (númeroTres != "") {
+                MensajesError.agregarError(elemento.toString(), Operaciones.RENOMBRAR,
+                        "Archivo con más de tres números", new IllegalArgumentException());
+                return elemento.getFileName().toString();
+            }
 
             if (númeroDos != null) {
                 return clave + númeroUno + "-" + númeroDos + " " + nombreManga;
@@ -75,19 +76,19 @@ public class ProcesarCadenas {
             }
         }
 
-        return númeroUno + "-" + númeroDos + " " + nombreManga; // Innecesario
+        return clave + nombreManga + " (sin número) " + ++num;
     }
 
     private static String encontrarPalabraClave(String nombre) {
+        StringBuilder palabra = new StringBuilder();
         for (String clave: palabrasClave) {
-            Pattern patrón = Pattern.compile(clave, Pattern.CASE_INSENSITIVE);
+            Pattern patrón = Pattern.compile("(?<!\\p{L})" + Pattern.quote(clave) + "(?!\\p{L})",
+                    Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
             Matcher matcher = patrón.matcher(nombre);
             if (matcher.find()) {
-                return matcher.group() + " ";
-            } else {
-                return "";
+                palabra.append(clave).append(" ");
             }
         }
-        return "";
+        return palabra.toString();
     }
 }

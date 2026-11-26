@@ -10,22 +10,26 @@ public class PatronesTest {
                 "\\d+-\\d+",
 
         };
+        final Pattern PATRON = Pattern.compile(
+                "(\\d+(?:\\.\\d+)?)(?:\\s*-\\s*(\\d+(?:\\.\\d+)?))?"
+        );
 
-
-        String texto = "123Hola Mundo123-123";
+        String texto = "123Hola Mundo123-456 difuvbf 111-111";
         String textoDos = "123Hola Mundo123-123 EXTRA";
         Pattern patrón = Pattern.compile("\\d+-\\d+");
         Pattern patrónDos = Pattern.compile("exTRa", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = patrón.matcher(texto);
+        Matcher matcher = PATRON.matcher(texto);
         Matcher matcherDos = patrónDos.matcher(textoDos);
         String parte = "";
 
         if (matcher.find()) {
             parte = matcher.group();
-            System.out.println(parte);
+            String dos = matcher.group();
+            System.out.println(parte + " " + dos);
         } else {
             System.out.println("NO");
         }
+
         if (matcherDos.find()) {
             parte = matcherDos.group();
             System.out.println(parte);
